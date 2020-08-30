@@ -6,4 +6,5 @@ The app will allow a user to create an account, login to their account, add cour
 
 ## Developers
 Denize Ignacio <br/>
-Cathy Hsu 
+Cathy Hsu <br/>
+Paribesh Neupane
