@@ -1,5 +1,6 @@
 package com.example.gradetracker.Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -25,15 +26,15 @@ public class Assignment {
     @ColumnInfo(name = "earned_points")
     private Integer earnedPoints;
     @ColumnInfo(name = "assigned_date")
-    private Date assignedDate;
+    private LocalDate assignedDate;
     @ColumnInfo(name = "due_date")
-    private Date dueDate;
+    private LocalDate dueDate;
     @ColumnInfo(name = "category_name")
     private String categoryName;
     @ColumnInfo(name = "course_id")
     private Integer courseID;
 
-    public Assignment(String assignmentDescription, String maxPoints, Integer earnedPoints, Date assignedDate, Date dueDate, String categoryName, Integer courseID) {
+    public Assignment(String assignmentDescription, String maxPoints, Integer earnedPoints, LocalDate assignedDate, LocalDate dueDate, String categoryName, Integer courseID) {
         this.assignmentDescription = assignmentDescription;
         this.maxPoints = maxPoints;
         this.earnedPoints = earnedPoints;
@@ -63,11 +64,11 @@ public class Assignment {
         return earnedPoints;
     }
 
-    public Date getAssignedDate() {
+    public LocalDate getAssignedDate() {
         return assignedDate;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 

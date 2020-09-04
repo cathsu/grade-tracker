@@ -23,18 +23,15 @@ public class Course {
     private LocalDate startDate;
     @ColumnInfo(name = "end_date")
     private LocalDate endDate;
-    @ColumnInfo(name = "course_time")
-    private LocalTime courseTime;
     @ColumnInfo(name = "grade")
     private Double grade;
 
-    public Course(String instructor, String courseName, String description, LocalDate startDate, LocalDate endDate, LocalTime courseTime, Double grade) {
+    public Course(String instructor, String courseName, String description, LocalDate startDate, LocalDate endDate,Double grade) {
         this.instructor = instructor;
         this.courseName = courseName;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.courseTime = courseTime;
         this.grade = grade;
     }
 
@@ -64,10 +61,6 @@ public class Course {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public LocalTime getCourseTime() {
-        return courseTime;
     }
 
     public Double getGrade() {
