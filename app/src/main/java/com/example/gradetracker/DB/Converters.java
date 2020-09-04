@@ -14,6 +14,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+
+// Reference
+// https://stackoverflow.com/questions/54927913/room-localdatetime-typeconverter
+// https://medium.com/@amit.bhandari/storing-java-objects-other-than-primitive-types-in-room-database-11e45f4f6d22
 public class Converters {
     @TypeConverter
     public static String fromLocalDate (LocalDate date) {
