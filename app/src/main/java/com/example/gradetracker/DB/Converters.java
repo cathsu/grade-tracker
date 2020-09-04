@@ -24,7 +24,7 @@ public class Converters {
     }
 
     @TypeConverter
-    public static String fromCourseArrayList(ArrayList<Course> courses) {
+    public static String fromArrayListCourses(ArrayList<Course> courses) {
         Gson gson = new Gson();
         String json = gson.toJson(courses);
         return json;
