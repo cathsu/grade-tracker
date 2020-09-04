@@ -5,12 +5,15 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 
 @Database(entities = {Assignment.class, Course.class, User.class}, version = 1)
+@TypeConverters({Converters.class})
 public abstract class GradeTrackerDatabase extends RoomDatabase {
 
     private static GradeTrackerDatabase instance;
