@@ -66,4 +66,17 @@ public class Course {
     public Double getGrade() {
         return grade;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseID=" + courseID +
+                ", instructor='" + instructor + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate.toString() +
+                ", endDate=" + endDate.toString() +
+                ", grade=" + grade +
+                '}';
+    }
 }
