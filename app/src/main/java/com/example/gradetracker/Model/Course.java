@@ -1,6 +1,6 @@
 package com.example.gradetracker.Model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -18,15 +18,15 @@ public class Course {
     @ColumnInfo(name = "description")
     private String description;
     @ColumnInfo(name = "start_date")
-    private Date startDate;
+    private Calendar startDate;
     @ColumnInfo(name = "end_date")
-    private Date endDate;
+    private Calendar endDate;
     @ColumnInfo(name = "course_time")
-    private Date courseTime;
+    private Calendar courseTime;
     @ColumnInfo(name = "grade")
     private Double grade;
 
-    public Course(String instructor, String courseName, String description, Date startDate, Date endDate, Date courseTime, Double grade) {
+    public Course(String instructor, String courseName, String description, Calendar startDate, Calendar endDate, Calendar courseTime, Double grade) {
         this.instructor = instructor;
         this.courseName = courseName;
         this.description = description;
@@ -56,15 +56,15 @@ public class Course {
         return description;
     }
 
-    public Date getStartDate() {
+    public Calendar getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public Calendar getEndDate() {
         return endDate;
     }
 
-    public Date getCourseTime() {
+    public Calendar getCourseTime() {
         return courseTime;
     }
 
