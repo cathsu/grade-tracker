@@ -59,11 +59,10 @@ public class GradeTrackerDatabaseTest {
         userDao.insertUser(user1);
 
         User foundUser = userDao.getUserWithUsername("username");
-        System.out.println(foundUser.getUserName());
 //        assertThat(foundUser.getUserName(), equalTo("username"));
-//        assertEquals(foundUser.getUserName(), "username");
-//        assertEquals(foundUser.getPassword(), "password");
-//        assertEquals(foundUser.getFirstName(), "Hermione");
-//        assertEquals(foundUser.getLastName(), "Granger");
+        assertEquals(foundUser.getUserName(), "username");
+        assertEquals(foundUser.getPassword(), "password");
+        assertEquals(foundUser.getFirstName(), "Hermione");
+        assertEquals(foundUser.getLastName(), "Granger");
     }
 }
