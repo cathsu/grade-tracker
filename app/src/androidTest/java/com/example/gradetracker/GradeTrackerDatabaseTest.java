@@ -6,7 +6,7 @@ import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.gradetracker.DB.GradeTrackerDatabase;
+import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.DB.UserDao;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
@@ -29,13 +29,13 @@ import static org.junit.Assert.assertThat;
 @RunWith(AndroidJUnit4.class)
 public class GradeTrackerDatabaseTest {
     private UserDao userDao;
-    private GradeTrackerDatabase db;
+    private AppDatabase db;
 
     @Before
     public void createDb() {
         Context context = ApplicationProvider.getApplicationContext();
-        db = Room.inMemoryDatabaseBuilder(context, GradeTrackerDatabase.class).build();
-        userDao = db.UserDao();
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
+        userDao = db.userDao();
     }
 
     @After

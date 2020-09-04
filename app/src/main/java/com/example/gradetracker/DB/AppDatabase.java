@@ -14,21 +14,21 @@ import com.example.gradetracker.Model.User;
 
 @Database(entities = {Assignment.class, Course.class, User.class}, version = 1)
 @TypeConverters({Converters.class})
-public abstract class GradeTrackerDatabase extends RoomDatabase {
-
-    private static GradeTrackerDatabase instance;
+public abstract class AppDatabase extends RoomDatabase {
+    public static final String DBNAME ="grade_tracker_db";
+    private static AppDatabase instance;
 
     // Todo: Uncomment when AssignmentDao and CourseDao are merged in
 //    public abstract AssignmentDao AssignmentDao();
 //
-//    public abstract CourseDao CourseDao();
+    public abstract CourseDao courseDao();
 
-    public abstract UserDao UserDao();
+    public abstract UserDao userDao();
 
-    public static synchronized GradeTrackerDatabase getInstance(Context context) {
+    public static synchronized AppDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    GradeTrackerDatabase.class, "grade_tracker_database")
+                    AppDatabase.class, DBNAME)
                     .fallbackToDestructiveMigration()
                     .build();
         }
