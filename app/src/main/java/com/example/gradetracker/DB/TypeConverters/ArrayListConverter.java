@@ -1,4 +1,4 @@
-package com.example.gradetracker.DB;
+package com.example.gradetracker.DB.TypeConverters;
 
 import android.os.Build;
 import android.util.Log;
@@ -18,23 +18,13 @@ import java.util.ArrayList;
 // Reference
 // https://stackoverflow.com/questions/54927913/room-localdatetime-typeconverter
 // https://medium.com/@amit.bhandari/storing-java-objects-other-than-primitive-types-in-room-database-11e45f4f6d22
-public class Converters {
-    @TypeConverter
-    public static String fromLocalDate (LocalDate date) {
-        return date == null ? null : date.toString();
-    }
+public class ArrayListConverter {
 
     @TypeConverter
     public static String fromArrayListCourses(ArrayList<Course> courses) {
         Gson gson = new Gson();
         String json = gson.toJson(courses);
         return json;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @TypeConverter
-    public static LocalDate fromDateString(String dateString) {
-        return dateString  == null ? null : LocalDate.parse(dateString);
     }
 
 
