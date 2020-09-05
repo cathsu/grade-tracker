@@ -5,15 +5,15 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
+import com.example.gradetracker.DB.TypeConverters.ArrayListConverter;
 import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 
 @Database(entities = {Assignment.class, Course.class, User.class}, version = 3)
-@TypeConverters({Converters.class})
+@TypeConverters({ArrayListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DBNAME ="grade_tracker_db";
     private static AppDatabase instance;
