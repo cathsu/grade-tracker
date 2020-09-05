@@ -2,6 +2,7 @@ package com.example.gradetracker.DB;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Query;
 
 import com.example.gradetracker.Model.Course;
 
@@ -9,4 +10,5 @@ import com.example.gradetracker.Model.Course;
 public interface CourseDao {
     @Insert
     void insertCourse(Course course);
+
 }

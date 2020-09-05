@@ -1,9 +1,12 @@
 package com.example.gradetracker.Model;
 
+import android.os.Build;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 
+import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -65,6 +68,16 @@ public class Course {
 
     public Double getGrade() {
         return grade;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDate getStartDateAsLocalDate() {
+        return LocalDate.parse(startDate);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDate getEndDateAsLocalDate() {
+        return LocalDate.parse(endDate);
     }
 
     @Override
