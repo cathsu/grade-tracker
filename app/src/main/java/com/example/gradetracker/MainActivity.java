@@ -26,32 +26,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UserDao mUserDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DBNAME)
-            .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
-            .build()
-            .userDao();
-
-        CourseDao mCourseDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DBNAME)
-            .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
-            .build()
-            .courseDao();
+        AppDatabase db = AppDatabase.getInstance(getApplicationContext());
 
         Course course1 = new Course("Drew Clickenbeard",
                 "CST 438",
                 "Software engineering class",
-                LocalDate.now(),
-                LocalDate.of(2020, 12, 18),
+                LocalDate.now().toString(),
+                LocalDate.of(2020, 12, 18).toString(),
                 90.0);
 
         ArrayList<Course> courses = new ArrayList<>();
-        mCourseDao.insertCourse(course1);
+        db.courseDao().insertCourse(course1);
         Log.d("users", "Course: " + course1.toString());
         courses.add(course1);
         User user = new User("username", "password", "Hermione", "Granger", courses);
-        mUserDao.insertUser(user);
-        List<User> users = mUserDao.getAllUsers();
+        db.userDao().insertUser(user);
+        List<User> users = db.userDao().getAllUsers();
         Log.d("users", "Courses in User class: " + users.get(0).getCourses());
     }
 }

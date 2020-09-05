@@ -12,7 +12,7 @@ import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 
-@Database(entities = {Assignment.class, Course.class, User.class}, version = 1)
+@Database(entities = {Assignment.class, Course.class, User.class}, version = 3)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DBNAME ="grade_tracker_db";
@@ -30,6 +30,7 @@ public abstract class AppDatabase extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     AppDatabase.class, DBNAME)
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
         }
         return instance;

@@ -20,13 +20,13 @@ public class Course {
     @ColumnInfo(name = "description")
     private String description;
     @ColumnInfo(name = "start_date")
-    private LocalDate startDate;
+    private String startDate;
     @ColumnInfo(name = "end_date")
-    private LocalDate endDate;
+    private String endDate;
     @ColumnInfo(name = "grade")
     private Double grade;
 
-    public Course(String instructor, String courseName, String description, LocalDate startDate, LocalDate endDate,Double grade) {
+    public Course(String instructor, String courseName, String description, String startDate, String endDate,Double grade) {
         this.instructor = instructor;
         this.courseName = courseName;
         this.description = description;
@@ -55,11 +55,11 @@ public class Course {
         return description;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
