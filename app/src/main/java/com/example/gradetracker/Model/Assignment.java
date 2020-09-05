@@ -3,7 +3,6 @@ package com.example.gradetracker.Model;
 import android.os.Build;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
