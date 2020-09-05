@@ -21,13 +21,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-import static org.hamcrest.EasyMock2Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+
 
 
 @RunWith(AndroidJUnit4.class)
-public class GradeTrackerDatabaseTest {
+public class AppDatabaseInstrumentedTest {
     private UserDao userDao;
     private AppDatabase db;
 
@@ -49,8 +48,8 @@ public class GradeTrackerDatabaseTest {
         Course course1 = new Course("Drew Clickenbeard",
                 "CST 438",
                 "Software engineering class",
-                LocalDate.of(2020, 8, 24),
-                LocalDate.of(2020, 12, 18),
+                LocalDate.of(2020, 8, 24).toString(),
+                LocalDate.of(2020, 12, 18).toString(),
                 90.0);
         ArrayList<Course> courses = new ArrayList<>();
         courses.add(course1);
