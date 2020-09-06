@@ -45,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
         // Checking if UserDao works
         User user = new User("username", "password", "Hermione", "Granger", courses);
         db.userDao().insertUser(user);
+        Log.d(TAG, "Inserting user");
+        Log.d(TAG, user.toString());
         List<User> users = db.userDao().getAllUsers();
         Log.d(TAG, "Testing ArrayList<Courses> in User class");
+        Log.d(TAG, users.get(0).toString());
         Log.d(TAG, users.get(0).getCourses().toString());
         Log.d(TAG, users.get(0).getCourses().get(0).getStartDateAsLocalDate().toString());
         Log.d(TAG, users.get(0).getCourses().get(0).getEndDateAsLocalDate().toString());
