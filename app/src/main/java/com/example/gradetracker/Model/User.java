@@ -28,12 +28,6 @@ public class User {
         this.courses = courses;
     }
 
-//    public User(String userName, String password, String firstName, String lastName) {
-//        this.userName = userName;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//    }
     public void setUserID(Integer userID) {
         this.userID = userID;
     }
