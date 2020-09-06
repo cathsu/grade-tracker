@@ -55,4 +55,16 @@ public class User {
     public ArrayList<Course> getCourses() {
         return courses;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", courses=" + courses +
+                '}';
+    }
 }

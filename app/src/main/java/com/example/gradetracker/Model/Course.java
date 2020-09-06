@@ -1,7 +1,10 @@
 package com.example.gradetracker.Model;
 
-import java.util.Date;
+import android.os.Build;
 
+import java.time.LocalDate;
+
+import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -18,21 +21,18 @@ public class Course {
     @ColumnInfo(name = "description")
     private String description;
     @ColumnInfo(name = "start_date")
-    private Date startDate;
+    private String startDate;
     @ColumnInfo(name = "end_date")
-    private Date endDate;
-    @ColumnInfo(name = "course_time")
-    private Date courseTime;
+    private String endDate;
     @ColumnInfo(name = "grade")
     private Double grade;
 
-    public Course(String instructor, String courseName, String description, Date startDate, Date endDate, Date courseTime, Double grade) {
+    public Course(String instructor, String courseName, String description, String startDate, String endDate,Double grade) {
         this.instructor = instructor;
         this.courseName = courseName;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.courseTime = courseTime;
         this.grade = grade;
     }
 
@@ -56,19 +56,38 @@ public class Course {
         return description;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
-    }
-
-    public Date getCourseTime() {
-        return courseTime;
     }
 
     public Double getGrade() {
         return grade;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDate getStartDateAsLocalDate() {
+        return LocalDate.parse(startDate);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDate getEndDateAsLocalDate() {
+        return LocalDate.parse(endDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseID=" + courseID +
+                ", instructor='" + instructor + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate.toString() +
+                ", endDate=" + endDate.toString() +
+                ", grade=" + grade +
+                '}';
     }
 }

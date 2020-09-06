@@ -1,7 +1,10 @@
 package com.example.gradetracker.Model;
 
-import java.util.Date;
+import android.os.Build;
 
+import java.time.LocalDate;
+
+import androidx.annotation.RequiresApi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -25,15 +28,15 @@ public class Assignment {
     @ColumnInfo(name = "earned_points")
     private Integer earnedPoints;
     @ColumnInfo(name = "assigned_date")
-    private Date assignedDate;
+    private String assignedDate;
     @ColumnInfo(name = "due_date")
-    private Date dueDate;
+    private String dueDate;
     @ColumnInfo(name = "category_name")
     private String categoryName;
     @ColumnInfo(name = "course_id")
     private Integer courseID;
 
-    public Assignment(String assignmentDescription, String maxPoints, Integer earnedPoints, Date assignedDate, Date dueDate, String categoryName, Integer courseID) {
+    public Assignment(String assignmentDescription, String maxPoints, Integer earnedPoints, String assignedDate, String dueDate, String categoryName, Integer courseID) {
         this.assignmentDescription = assignmentDescription;
         this.maxPoints = maxPoints;
         this.earnedPoints = earnedPoints;
@@ -63,11 +66,11 @@ public class Assignment {
         return earnedPoints;
     }
 
-    public Date getAssignedDate() {
+    public String getAssignedDate() {
         return assignedDate;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
@@ -77,5 +80,15 @@ public class Assignment {
 
     public Integer getCourseID() {
         return courseID;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDate getAssignedDateAsLocalDate() {
+        return LocalDate.parse(assignedDate);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDate getDueDateAsLocalDate() {
+        return LocalDate.parse(dueDate);
     }
 }
