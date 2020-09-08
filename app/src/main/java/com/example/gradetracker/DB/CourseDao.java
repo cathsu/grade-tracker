@@ -13,11 +13,11 @@ import java.util.List;
 @Dao
 public interface CourseDao {
     @Insert
-    void insert(Course... courses);
+    void insertCourse(Course course);
     @Update
-    void update(Course... courses);
+    void updateCourse(Course course);
     @Delete
-    void delete(Course... courses);
+    void deleteCourse(Course course);
 
 
     @Query("SELECT * FROM course WHERE course_id = :courseId")

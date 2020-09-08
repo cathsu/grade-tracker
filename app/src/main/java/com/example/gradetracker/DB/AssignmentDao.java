@@ -15,13 +15,13 @@ import java.util.List;
 public interface AssignmentDao {
 
     @Insert
-    void insert(Assignment... assignment);
+    void insertAssignment(Assignment assignment);
 
     @Update
-    void update(Assignment...assignment);
+    void updateAssignment(Assignment assignment);
 
     @Delete
-    void delete(Assignment assignment);
+    void deleteAssignment(Assignment assignment);
 
     @Query("SELECT * FROM assignment WHERE assignment_description = :assignDescription")
     Assignment getAssignmentId(String assignDescription);
