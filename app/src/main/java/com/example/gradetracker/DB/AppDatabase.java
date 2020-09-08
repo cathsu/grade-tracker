@@ -19,7 +19,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 
     // Todo: Uncomment when AssignmentDao and CourseDao are merged in
-//    public abstract AssignmentDao AssignmentDao();
+    public abstract AssignmentDao AssignmentDao();
 //
     public abstract CourseDao courseDao();
 
