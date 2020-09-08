@@ -23,8 +23,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-
-
 @RunWith(AndroidJUnit4.class)
 public class AppDatabaseInstrumentedTest {
     private UserDao userDao;
