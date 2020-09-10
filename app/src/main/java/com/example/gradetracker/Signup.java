@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ public class Signup extends AppCompatActivity {
 
     }
 
-    public static Intent getIntent(Context context, String value) {
+    public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, Signup.class);
         return intent;
     }
@@ -44,7 +45,7 @@ public class Signup extends AppCompatActivity {
         validateCredentials();
     }
 
-    public Boolean validateCredentials() {
+    public void validateCredentials() {
         String firstName = mFirstName.getText().toString();
         String lastName = mLastName.getText().toString();
         String username = mUsername.getText().toString();
@@ -53,19 +54,35 @@ public class Signup extends AppCompatActivity {
         Boolean isUsernameValid = isUsernameUnique(username);
         Boolean isPasswordValid = doesPasswordMeetRequirements(password);
 
-        if (isUsernameValid && isPasswordValid) {
+
+        if (isUsernameValid && isPasswordValid && !firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
             db.userDao().insertUser(new User(username, password, firstName, lastName, null));
+        }
+        if (firstName.isEmpty()) {
+            mFirstName.setError("Please enter a first name");
+        }
+        if (lastName.isEmpty()) {
+            mLastName.setError("Please enter a last name");
+        }
+        if (username.isEmpty()) {
+            mUsername.setError("Please enter a username");
+        }
+        if (password.isEmpty()) {
+            mPassword.setError("Please enter a password");
         }
         else {
             if (!isUsernameValid) {
-                mUsername.setError("Username is already taken!");
+                mUsername.setError("Username is already taken.");
             }
-            else if (isPasswordValid) {
+            if (!isPasswordValid) {
                 mPassword.setError("Password must be 8 characters long. There must be at least 3 letters and 2 numbers.");
             }
         }
-        return false;
+//        Log.d("testing", db.userDao().getUserWithUsername(username).toString());
+
+
     }
+
 
     public Boolean isUsernameUnique(String username) {
         User existingUser = db.userDao().getUserWithUsername(username);
@@ -86,6 +103,6 @@ public class Signup extends AppCompatActivity {
                 numDigits += 1;
             }
         }
-        return (numLetters > 3 && numLetters > 2) ? true : false;
+        return (numLetters >= 3 && numDigits >= 2) ? true : false;
     }
 }

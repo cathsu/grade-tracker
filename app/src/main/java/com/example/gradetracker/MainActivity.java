@@ -3,25 +3,17 @@ package com.example.gradetracker;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gradetracker.DB.AppDatabase;
-import com.example.gradetracker.Model.Course;
-import com.example.gradetracker.Model.User;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "testing";
 
-    EditText mSignup;
+    private Button mSignup;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -29,8 +21,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mSignup = findViewById(R.id.SignUp);
     }
 
-
-
+    public void signup(View view) {
+        Intent intent = Signup.getIntent(getApplicationContext());
+        startActivity(intent);
+    }
 }
