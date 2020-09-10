@@ -41,8 +41,7 @@ public class Signup extends AppCompatActivity {
     }
 
     public void signup(View view) {
-
-
+        validateCredentials();
     }
 
     public Boolean validateCredentials() {
@@ -51,7 +50,20 @@ public class Signup extends AppCompatActivity {
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
 
+        Boolean isUsernameValid = isUsernameUnique(username);
+        Boolean isPasswordValid = doesPasswordMeetRequirements(password);
 
+        if (isUsernameValid && isPasswordValid) {
+            db.userDao().insertUser(new User(username, password, firstName, lastName, null));
+        }
+        else {
+            if (!isUsernameValid) {
+                mUsername.setError("Username is already taken!");
+            }
+            else if (isPasswordValid) {
+                mPassword.setError("Password must be 8 characters long. There must be at least 3 letters and 2 numbers.");
+            }
+        }
         return false;
     }
 
@@ -60,10 +72,6 @@ public class Signup extends AppCompatActivity {
         return existingUser == null? true : false;
     }
 
-//    public Boolean isUsernameUnique(User existingUser) {
-//
-//        return existingUser == null? true : false;
-//    }
     public Boolean doesPasswordMeetRequirements(String password) {
         int numLetters = 0, numDigits = 0;
         if (password.length() < 8) {
@@ -78,7 +86,6 @@ public class Signup extends AppCompatActivity {
                 numDigits += 1;
             }
         }
-
+        return (numLetters > 3 && numLetters > 2) ? true : false;
     }
-
 }
