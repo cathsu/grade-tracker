@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.Model.User;
@@ -57,6 +59,9 @@ public class Signup extends AppCompatActivity {
 
         if (isUsernameValid && isPasswordValid && !firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
             db.userDao().insertUser(new User(username, password, firstName, lastName, null));
+            Toast t = Toast.makeText(getApplicationContext(), "Signup successful", Toast.LENGTH_SHORT);
+            t.setGravity(Gravity.BOTTOM, 0, 0);
+            t.show();
         }
         if (firstName.isEmpty()) {
             mFirstName.setError("Please enter a first name");
