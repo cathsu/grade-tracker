@@ -46,7 +46,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        // TODO add relevant view texts here
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -59,9 +58,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         public void bind(Course currentCourse) {
             itemCourseBinding.tvCourseName.setText(currentCourse.getCourseName());
             itemCourseBinding.tvInstructorName.setText(currentCourse.getInstructor());
-//            itemCourseBinding.tvStartDate.setText(currentCourse.getStartDate());
-//            itemCourseBinding.tvEndDate.setText(currentCourse.getEndDate());
-//            itemCourseBinding.tvDescription.setText(currentCourse.getDescription());
         }
     }
 }

@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.gradetracker.DB.AppDatabase;
-import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         View view = activityMainBinding.getRoot();
         setContentView(view);
         db = AppDatabase.getInstance(getApplicationContext());
-        ArrayList<Course> courses = new ArrayList<>();
-        db.userDao().insertUser(new User("denize", "123", "denize", "ignacio", courses));
         activityMainBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
