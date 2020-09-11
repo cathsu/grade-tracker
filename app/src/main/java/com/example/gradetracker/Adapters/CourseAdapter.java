@@ -60,7 +60,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             itemCourseBinding.tvInstructorName.setText(currentCourse.getInstructor());
             itemCourseBinding.tvStartDate.setText(currentCourse.getStartDate());
             itemCourseBinding.tvEndDate.setText(currentCourse.getEndDate());
-            itemCourseBinding.tvDescription.setText(currentCourse.getDescription());
+//            itemCourseBinding.tvDescription.setText(currentCourse.getDescription());
         }
     }
 }

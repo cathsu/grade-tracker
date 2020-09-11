@@ -44,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        activityMainBinding.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     public Boolean isUsernameUnique(String username) {

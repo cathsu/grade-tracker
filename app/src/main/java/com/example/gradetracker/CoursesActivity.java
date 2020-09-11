@@ -32,6 +32,6 @@ public class CoursesActivity extends AppCompatActivity {
         // recycler view logic
         CourseAdapter adapter = new CourseAdapter(courses);
         activityCoursesBinding.rvCourses.setAdapter(adapter);
-        activityCoursesBinding.rvCourses
+//        activityCoursesBinding.rvCourses
     }
 }

@@ -24,7 +24,7 @@ public class Assignment {
     @ColumnInfo(name = "assignment_description")
     private String assignmentDescription;
     @ColumnInfo(name = "max_points")
-    private String maxPoints;
+    private Integer maxPoints;
     @ColumnInfo(name = "earned_points")
     private Integer earnedPoints;
     @ColumnInfo(name = "assigned_date")
@@ -36,7 +36,7 @@ public class Assignment {
     @ColumnInfo(name = "course_id")
     private Integer courseID;
 
-    public Assignment(String assignmentDescription, String maxPoints, Integer earnedPoints, String assignedDate, String dueDate, String categoryName, Integer courseID) {
+    public Assignment(String assignmentDescription, Integer maxPoints, Integer earnedPoints, String assignedDate, String dueDate, String categoryName, Integer courseID) {
         this.assignmentDescription = assignmentDescription;
         this.maxPoints = maxPoints;
         this.earnedPoints = earnedPoints;
@@ -58,7 +58,7 @@ public class Assignment {
         return assignmentDescription;
     }
 
-    public String getMaxPoints() {
+    public Integer getMaxPoints() {
         return maxPoints;
     }
 
@@ -80,6 +80,25 @@ public class Assignment {
 
     public Integer getCourseID() {
         return courseID;
+    }
+
+    public String getLetterGrade() {
+        double gradeValue = ((double) earnedPoints) / maxPoints;
+        if (gradeValue < 0.9) {
+            return "A";
+        }
+        else if (gradeValue < 0.8) {
+            return "B";
+        }
+        else if (gradeValue < 0.7) {
+            return "C";
+        }
+        else if (gradeValue < 0.6) {
+            return "D";
+        }
+        else {
+            return "F";
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

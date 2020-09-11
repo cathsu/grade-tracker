@@ -24,7 +24,7 @@
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/tvDescription"
+                android:id="@+id/tvDescriptionLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/tvInstructorName"
@@ -35,7 +35,7 @@
                 android:id="@+id/tvStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionLabel"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="TextView" />
 
@@ -43,7 +43,7 @@
                 android:id="@+id/tvEndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionLabel"
                 app:layout_constraintLeft_toRightOf="@+id/tvStartDate"
                 android:layout_marginStart="10dp"
                 android:text="TextView" />
