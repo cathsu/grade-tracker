@@ -50,7 +50,10 @@ public class AssignmentActivity extends AppCompatActivity {
     public ArrayList<Assignment> createAssignments(ArrayList<Assignment> assignment) {
         assignment.add(new Assignment("Assignment 1", 100, 78, "02-15-2020", "02-17-2020", "Test", 1));
         assignment.add(new Assignment("Assignment 2", 100, 78, "02-15-2020", "02-17-2020", "Test", 1));
+        assignment.add(new Assignment("Assignment 3", 100, 78, "02-15-2020", "02-17-2020", "Test", 1));
         return assignment;
     }
+
+
 
 }
