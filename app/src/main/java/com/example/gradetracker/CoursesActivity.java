@@ -34,6 +34,16 @@ public class CoursesActivity extends AppCompatActivity {
         setContentView(view);
         String username = getIntent().getStringExtra("username");
         User user = db.userDao().getUserWithUsername(username);
+        activityCoursesBinding.fabAddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CoursesActivity.this, "CLICKED THE FAB", Toast.LENGTH_SHORT).show();
+                // TODO add course to user object
+                // TODO Add course to sql courses
+                // TODO refresh the recyclerview of items
+            }
+        });
+        courses = user.getCourses();
         if (courses.isEmpty()) {
             Log.d("testing", "empty");
             Toast toast = Toast.makeText(getApplicationContext(), "No courses to display. Feel free to add some!", Toast.LENGTH_LONG);
@@ -44,5 +54,9 @@ public class CoursesActivity extends AppCompatActivity {
             activityCoursesBinding.rvCourses.setAdapter(adapter);
             activityCoursesBinding.rvCourses.setLayoutManager(new LinearLayoutManager(this));
         }
+    }
+
+    public void addCourse(User user) {
+        
     }
 }
