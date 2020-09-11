@@ -13,7 +13,7 @@ import com.example.gradetracker.R;
 
 import java.util.ArrayList;
 
-public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
+public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
     private ArrayList<Assignment> mAssignmentList;
 
 
