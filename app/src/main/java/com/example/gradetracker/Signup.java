@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -13,7 +15,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gradetracker.DB.AppDatabase;
+import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
+
+import java.util.ArrayList;
 
 public class Signup extends AppCompatActivity {
 
@@ -58,10 +63,12 @@ public class Signup extends AppCompatActivity {
 
 
         if (isUsernameValid && isPasswordValid && !firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
-            db.userDao().insertUser(new User(username, password, firstName, lastName, null));
+            db.userDao().insertUser(new User(username, password, firstName, lastName, new ArrayList<Course>()));
             Toast t = Toast.makeText(getApplicationContext(), "Signup successful", Toast.LENGTH_SHORT);
             t.setGravity(Gravity.BOTTOM, 0, 0);
             t.show();
+            Intent intent = MainActivity.getIntent(getApplicationContext());
+            startActivity(intent);
         }
         if (firstName.isEmpty()) {
             mFirstName.setError("Please enter a first name");

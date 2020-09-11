@@ -1,6 +1,7 @@
 package com.example.gradetracker.DB;
 
 import com.example.gradetracker.Model.Course;
+import com.example.gradetracker.Model.User;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -19,6 +20,8 @@ public interface CourseDao {
     @Delete
     void deleteCourse(Course course);
 
+    @Query("SELECT * FROM course")
+    List<Course> getAllCourses();
 
     @Query("SELECT * FROM course WHERE course_id = :courseId")
     List<Course> getCourseId(int courseId);

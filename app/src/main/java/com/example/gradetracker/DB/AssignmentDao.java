@@ -2,6 +2,7 @@ package com.example.gradetracker.DB;
 
 
 import com.example.gradetracker.Model.Assignment;
+import com.example.gradetracker.Model.User;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -22,6 +23,9 @@ public interface AssignmentDao {
 
     @Delete
     void deleteAssignment(Assignment assignment);
+
+    @Query("SELECT * FROM assignment")
+    List<Assignment> getAllAssignments();
 
     @Query("SELECT * FROM assignment WHERE assignment_description = :assignDescription")
     Assignment getAssignmentId(String assignDescription);
