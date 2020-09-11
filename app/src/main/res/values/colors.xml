@@ -6,4 +6,18 @@
     <color name="colorError">#FF0000</color>
     <color name="colorOtter">#112E51</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="purple">#9C27B0</color>
+    <color name="indigo">#673AB7</color>
+    <color name="blue">#2196F3</color>
+    <color name="cyan">#00BCD4</color>
+    <color name="light_blue">#03A9F4</color>
+    <color name="carolina">#57A0D3</color>
+    <color name="steel">#4682B4</color>
+    <color name="olympic">#008ECC</color>
+    <color name="pigeon">#7285A5</color>
+    <color name="independence">#4C516D</color>
+    <color name="azure">#0080FF</color>
+    <color name="teal">#008081</color>
+    <color name="white">#ffffff</color>
+
 </resources>
