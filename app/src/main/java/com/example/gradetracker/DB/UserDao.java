@@ -1,7 +1,9 @@
 package com.example.gradetracker.DB;
 
+import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.room.Dao;
@@ -30,4 +32,5 @@ public interface UserDao {
 
     @Query("SELECT * FROM users where username LIKE :search")
     User getUserWithUsername(String search);
+
 }

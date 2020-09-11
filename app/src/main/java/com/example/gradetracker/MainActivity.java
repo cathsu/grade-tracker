@@ -1,6 +1,8 @@
 package com.example.gradetracker;
 
+import android.content.Context;
 import android.content.Intent;
+
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,9 +15,11 @@ import com.example.gradetracker.databinding.ActivityMainBinding;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding activityMainBinding;
     private AppDatabase db;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -44,6 +48,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        activityMainBinding.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = Signup.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 
     public Boolean isUsernameUnique(String username) {

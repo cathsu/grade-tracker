@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Grade Tracker</string>
+    <string name="signup_first_name">First Name</string>
+    <string name="signup_last_name">Last Name</string>
+    <string name="signup_username">Username</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_button_text">Sign up</string>
 </resources>
