@@ -57,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        activityMainBinding.btnAssignment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     public static Intent getIntent(Context context) {
