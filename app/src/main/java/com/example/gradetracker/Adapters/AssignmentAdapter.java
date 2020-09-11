@@ -61,7 +61,6 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         holder.mEarnedMaxPoints.setText(assignmentItem.getEarnedPoints() + " / " + assignmentItem.getMaxPoints());
         holder.mCategory.setText(assignmentItem.getCategoryName());
         holder.mCategoryGrade.setText("HOW????");
-
     }
 
     @Override
