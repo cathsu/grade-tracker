@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.gradetracker.DB.AppDatabase;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = activityMainBinding.etUsername.getText().toString();
                 String password = activityMainBinding.etPassword.getText().toString();
+
                 if (!isUsernameUnique(username) && !username.isEmpty() && isPasswordMatching(username, password) && !password.isEmpty()) {
                     Intent loginToCoursesPageIntent = new Intent(getApplicationContext(), CoursesActivity.class);
                     loginToCoursesPageIntent.putExtra("username", username);
@@ -52,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = Signup.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+        activityMainBinding.btnAssignment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });

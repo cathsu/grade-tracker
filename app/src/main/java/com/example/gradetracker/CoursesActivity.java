@@ -1,10 +1,12 @@
 package com.example.gradetracker;
 
 import android.os.Bundle;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
+
 
 import com.example.gradetracker.Adapters.CourseAdapter;
 import com.example.gradetracker.DB.AppDatabase;
@@ -12,6 +14,7 @@ import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityCoursesBinding;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +34,6 @@ public class CoursesActivity extends AppCompatActivity {
         setContentView(view);
         String username = getIntent().getStringExtra("username");
         User user = db.userDao().getUserWithUsername(username);
-        courses = user.getCourses();
-        Log.d("testing", "" + courses.isEmpty());
         if (courses.isEmpty()) {
             Log.d("testing", "empty");
             Toast toast = Toast.makeText(getApplicationContext(), "No courses to display. Feel free to add some!", Toast.LENGTH_LONG);

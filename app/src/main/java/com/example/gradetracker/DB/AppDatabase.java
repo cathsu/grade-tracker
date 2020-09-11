@@ -12,7 +12,7 @@ import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 
-@Database(entities = {Assignment.class, Course.class, User.class}, version = 4)
+@Database(entities = {Assignment.class, Course.class, User.class}, version = 5)
 @TypeConverters({ArrayListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DBNAME ="grade_tracker_db";
