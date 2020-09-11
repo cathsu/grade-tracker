@@ -17,10 +17,8 @@ import com.example.gradetracker.databinding.ActivityAssignmentBinding;
 import java.util.ArrayList;
 
 public class AssignmentActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private AppDatabase db;
+    private ActivityAssignmentBinding activityAssignmentBinding;
 
     private ArrayList<Assignment> assignment = new ArrayList<>();
 
@@ -28,18 +26,15 @@ public class AssignmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = AppDatabase.getInstance(getApplicationContext());
-
-        setContentView(R.layout.activity_assignment);
+        activityAssignmentBinding = ActivityAssignmentBinding.inflate(getLayoutInflater());
+        View view = activityAssignmentBinding.getRoot();
+        setContentView(view);
 
         assignment = createAssignments(assignment);
+        AssignmentAdapter adapter = new AssignmentAdapter((assignment));
+        activityAssignmentBinding.rvAssignment.setAdapter(adapter);
+        activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
 
-        //recycler view logic
-        mRecyclerView = findViewById(R.id.rvAssignment);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new AssignmentAdapter(assignment);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
     public static Intent getIntent(Context context) {
