@@ -1,13 +1,14 @@
+
 package com.example.gradetracker.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.gradetracker.Model.Course;
-import com.example.gradetracker.R;
 import com.example.gradetracker.databinding.ItemCourseBinding;
 
 import java.util.List;
@@ -28,14 +29,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View courseView = inflater.inflate(R.layout.item_course, parent, false);
         itemCourseBinding = ItemCourseBinding.inflate(inflater);
-        return new ViewHolder(courseView);
+        View view = itemCourseBinding.getRoot();
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.ViewHolder holder, int position) {
         Course currentCourse = mCourses.get(position);
+        Log.i(CourseAdapter.class.getName(), currentCourse.toString());
         holder.bind(currentCourse);
     }
 
@@ -45,7 +47,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        // TODO add relevant view texts here
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -58,9 +59,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         public void bind(Course currentCourse) {
             itemCourseBinding.tvCourseName.setText(currentCourse.getCourseName());
             itemCourseBinding.tvInstructorName.setText(currentCourse.getInstructor());
-            itemCourseBinding.tvStartDate.setText(currentCourse.getStartDate());
-            itemCourseBinding.tvEndDate.setText(currentCourse.getEndDate());
-//            itemCourseBinding.tvDescription.setText(currentCourse.getDescription());
         }
     }
 }

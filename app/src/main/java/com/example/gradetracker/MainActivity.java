@@ -1,9 +1,12 @@
 package com.example.gradetracker;
 
+import android.content.Context;
 import android.content.Intent;
+
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.gradetracker.DB.AppDatabase;
@@ -13,9 +16,11 @@ import com.example.gradetracker.databinding.ActivityMainBinding;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding activityMainBinding;
     private AppDatabase db;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String username = activityMainBinding.etUsername.getText().toString();
                 String password = activityMainBinding.etPassword.getText().toString();
+
                 if (!isUsernameUnique(username) && !username.isEmpty() && isPasswordMatching(username, password) && !password.isEmpty()) {
                     Intent loginToCoursesPageIntent = new Intent(getApplicationContext(), CoursesActivity.class);
                     loginToCoursesPageIntent.putExtra("username", username);
@@ -44,14 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
         activityMainBinding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = AssignmentActivity.getIntent(getApplicationContext());
+                Intent intent = Signup.getIntent(getApplicationContext());
                 startActivity(intent);
             }
         });
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 
     public Boolean isUsernameUnique(String username) {
