@@ -2,12 +2,10 @@ package com.example.gradetracker;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;

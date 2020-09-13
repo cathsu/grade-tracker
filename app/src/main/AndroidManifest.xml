@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AssignmentActivity" />
         <activity android:name=".Signup" />
-        <activity android:name=".NewCourseActivity" />
+        <activity android:name=".NewCourseActivity"/>
         <activity android:name=".CoursesActivity" />
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

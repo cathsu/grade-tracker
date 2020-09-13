@@ -1,12 +1,11 @@
 package com.example.gradetracker;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
-
 
 import com.example.gradetracker.Adapters.CourseAdapter;
 import com.example.gradetracker.DB.AppDatabase;
@@ -14,7 +13,6 @@ import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityCoursesBinding;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +36,7 @@ public class CoursesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(CoursesActivity.this, "CLICKED THE FAB", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), NewCourseActivity.class));
                 // TODO add course to user object
                 // TODO Add course to sql courses
                 // TODO refresh the recyclerview of items
