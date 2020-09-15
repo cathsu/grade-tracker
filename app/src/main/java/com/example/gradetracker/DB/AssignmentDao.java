@@ -24,6 +24,9 @@ public interface AssignmentDao {
     @Delete
     void deleteAssignment(Assignment assignment);
 
+    @Query("DELETE FROM assignment")
+    void deleteAllAssignment();
+
     @Query("SELECT * FROM assignment")
     List<Assignment> getAllAssignments();
 
@@ -47,5 +50,11 @@ public interface AssignmentDao {
 
     @Query("SELECT * FROM assignment WHERE course_id = :courseId")
     List<Assignment> getAssignmentInCourseId(int courseId);
+
+    @Query("SELECT * FROM assignment WHERE course_id = :courseId and category_name = :categoryName")
+    List<Assignment> getAssignmentsWithCourseIdAndCategory(int courseId, String categoryName);
+
+    @Query("SELECT * FROM assignment WHERE course_id = :courseId")
+    List<Assignment> getAssignmentsWithCourseId(int courseId);
 }
 

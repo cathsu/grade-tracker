@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.gradetracker.DB.AppDatabase;
+import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityMainBinding;
 
@@ -39,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(5000);
         animationDrawable.setExitFadeDuration(2000);
 
+
         db = AppDatabase.getInstance(getApplicationContext());
+
+//        Assignment assignment = new Assignment("Assignment 1", "Brief description", 100, 78, "02-15-2020", "02-17-2020", "Test", 1);
+//        db.AssignmentDao().insertAssignment(assignment);
         activityMainBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = Signup.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+        activityMainBinding.assignmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), 1);
                 startActivity(intent);
             }
         });
