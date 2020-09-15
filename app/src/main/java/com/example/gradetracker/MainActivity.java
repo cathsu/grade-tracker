@@ -99,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
     public Boolean isPasswordMatching(String username, String password) {
         User existingUser = db.userDao().getUserWithUsername(username);
         return existingUser.getPassword().equals(password);
-
-
     }
 
     @Override
