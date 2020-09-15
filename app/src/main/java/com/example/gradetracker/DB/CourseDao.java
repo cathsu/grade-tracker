@@ -44,6 +44,9 @@ public interface CourseDao {
     @Query("SELECT * FROM course WHERE grade = :grade")
     List<Course> getCourseGrade(double grade);
 
+    @Query("SELECT course_id FROM course where course_name = :courseName")
+    Integer getCourseIdFromName(String courseName);
+
 
 
 }

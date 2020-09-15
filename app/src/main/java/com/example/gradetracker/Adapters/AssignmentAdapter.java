@@ -28,18 +28,18 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         public TextView mAssignmentGrade;
         public TextView mEarnedMaxPoints;
         public TextView mCategory;
-        public TextView mCategoryGrade;
+        public TextView mName;
 
 
         public AssignmentViewHolder(@NonNull View itemView) {
             super(itemView);
+            mName = itemView.findViewById(R.id.tvName);
             mDescription = itemView.findViewById(R.id.tvDescription);
             mAssignedDate = itemView.findViewById(R.id.tvAssignedDate);
             mDueDate = itemView.findViewById(R.id.tvDueDate);
             mAssignmentGrade = itemView.findViewById(R.id.tvGrade);
             mEarnedMaxPoints = itemView.findViewById(R.id.tvEarnedMaxPoints);
             mCategory = itemView.findViewById(R.id.tvCategory);
-            mCategoryGrade = itemView.findViewById(R.id.tvCategoryGrade);
         }
     }
     @NonNull
@@ -54,13 +54,14 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
     @Override
     public void onBindViewHolder(@NonNull AssignmentViewHolder holder, int position) {
         Assignment assignmentItem = mAssignmentList.get(position);
+        holder.mName.setText(assignmentItem.getName());
         holder.mDescription.setText(assignmentItem.getAssignmentDescription());
         holder.mAssignedDate.setText(assignmentItem.getAssignedDate());
         holder.mDueDate.setText(assignmentItem.getDueDate());
-        holder.mAssignmentGrade.setText(assignmentItem.getLetterGrade());
+        holder.mAssignmentGrade.setText(Double.toString(assignmentItem.getPercentageGrade()));
         holder.mEarnedMaxPoints.setText(assignmentItem.getEarnedPoints() + " / " + assignmentItem.getMaxPoints());
         holder.mCategory.setText(assignmentItem.getCategoryName());
-        holder.mCategoryGrade.setText("HOW????");
+
     }
 
     @Override

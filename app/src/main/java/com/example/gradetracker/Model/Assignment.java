@@ -18,6 +18,7 @@ import androidx.room.PrimaryKey;
         )
 })
 
+
 public class Assignment {
     @PrimaryKey(autoGenerate = true)
     private Integer assignmentID;

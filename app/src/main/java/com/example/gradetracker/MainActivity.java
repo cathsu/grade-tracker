@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(5000);
         animationDrawable.setExitFadeDuration(2000);
 
+
         db = AppDatabase.getInstance(getApplicationContext());
+
+//        Assignment assignment = new Assignment("Assignment 1", "Brief description", 100, 78, "02-15-2020", "02-17-2020", "Test", 1);
+//        db.AssignmentDao().insertAssignment(assignment);
         activityMainBinding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
