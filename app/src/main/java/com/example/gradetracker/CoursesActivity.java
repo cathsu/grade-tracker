@@ -32,16 +32,16 @@ public class CoursesActivity extends AppCompatActivity {
         setContentView(view);
         String username = getIntent().getStringExtra("username");
         User user = db.userDao().getUserWithUsername(username);
-//        activityCoursesBinding.fabAddCourse.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(CoursesActivity.this, "CLICKED THE FAB", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(getApplicationContext(), NewCourseActivity.class));
-//                // TODO add course to user object
-//                // TODO Add course to sql courses
-//                // TODO refresh the recyclerview of items
-//            }
-//        });
+        activityCoursesBinding.fabAddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CoursesActivity.this, "CLICKED THE FAB", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), NewCourseActivity.class));
+                // TODO add course to user object
+                // TODO Add course to sql courses
+                // TODO refresh the recyclerview of items
+            }
+        });
         courses = user.getCourses();
         if (courses.isEmpty()) {
             Log.d("testing", "empty");
