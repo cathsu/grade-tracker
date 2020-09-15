@@ -7,15 +7,17 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityMainBinding;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                     activityMainBinding.etPassword.setError("Invalid credentials");
                     activityMainBinding.etPassword.getBackground().setColorFilter(getResources().getColor(R.color.colorError),
                             PorterDuff.Mode.SRC_ATOP);
+                    Animation shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake);
+                    activityMainBinding.etUsername.startAnimation(shake);
+                    activityMainBinding.etPassword.startAnimation(shake);
                 }
             }
         });
