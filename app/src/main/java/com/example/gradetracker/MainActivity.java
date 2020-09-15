@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.gradetracker.DB.AppDatabase;
+import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityMainBinding;
 
@@ -64,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = Signup.getIntent(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+        activityMainBinding.assignmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = AssignmentActivity.getIntent(getApplicationContext(), 1);
                 startActivity(intent);
             }
         });

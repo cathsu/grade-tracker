@@ -21,6 +21,8 @@ import androidx.room.PrimaryKey;
 public class Assignment {
     @PrimaryKey(autoGenerate = true)
     private Integer assignmentID;
+    @ColumnInfo(name="assignment_name")
+    private String name;
     @ColumnInfo(name = "assignment_description")
     private String assignmentDescription;
     @ColumnInfo(name = "max_points")
@@ -36,7 +38,8 @@ public class Assignment {
     @ColumnInfo(name = "course_id")
     private Integer courseID;
 
-    public Assignment(String assignmentDescription, Integer maxPoints, Integer earnedPoints, String assignedDate, String dueDate, String categoryName, Integer courseID) {
+    public Assignment(String name, String assignmentDescription, Integer maxPoints, Integer earnedPoints, String assignedDate, String dueDate, String categoryName, Integer courseID) {
+        this.name = name;
         this.assignmentDescription = assignmentDescription;
         this.maxPoints = maxPoints;
         this.earnedPoints = earnedPoints;
@@ -44,6 +47,14 @@ public class Assignment {
         this.dueDate = dueDate;
         this.categoryName = categoryName;
         this.courseID = courseID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setAssignmentID(Integer assignmentID) {
@@ -82,6 +93,10 @@ public class Assignment {
         return courseID;
     }
 
+    public Double getPercentageGrade() {
+        double gradeValue = (((double) earnedPoints) / maxPoints)*100 ;
+        return gradeValue;
+    }
     public String getLetterGrade() {
         double gradeValue = ((double) earnedPoints) / maxPoints;
         if (gradeValue < 0.9) {
