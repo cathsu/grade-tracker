@@ -1,14 +1,14 @@
 package com.example.gradetracker.DB;
 
 import com.example.gradetracker.Model.Course;
-import com.example.gradetracker.Model.User;
+
+import java.util.List;
 
 import androidx.room.Dao;
-import androidx.room.Insert;
 import androidx.room.Delete;
+import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import java.util.List;
 
 
 @Dao
@@ -19,6 +19,9 @@ public interface CourseDao {
     void updateCourse(Course course);
     @Delete
     void deleteCourse(Course course);
+
+    @Query("DELETE from course")
+    void deleteAllCourses();
 
     @Query("SELECT * FROM course")
     List<Course> getAllCourses();
@@ -47,6 +50,6 @@ public interface CourseDao {
     @Query("SELECT course_id FROM course where course_name = :courseName")
     Integer getCourseIdFromName(String courseName);
 
-
-
+    @Query("SELECT * FROM course WHERE user_id = :userId")
+    List<Course> getCoursesByUserId(Integer userId);
 }

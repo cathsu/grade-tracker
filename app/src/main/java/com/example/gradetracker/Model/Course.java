@@ -14,6 +14,8 @@ public class Course {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "course_id")
     private Integer courseID;
+    @ColumnInfo(name = "user_id")
+    private Integer userID;
     @ColumnInfo(name = "instructor")
     private String instructor;
     @ColumnInfo(name = "course_name")
@@ -27,13 +29,22 @@ public class Course {
     @ColumnInfo(name = "grade")
     private Double grade;
 
-    public Course(String instructor, String courseName, String description, String startDate, String endDate,Double grade) {
+    public Course(Integer userID, String instructor, String courseName, String description, String startDate, String endDate,Double grade) {
+        this.userID = userID;
         this.instructor = instructor;
         this.courseName = courseName;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.grade = grade;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     public void setCourseID(Integer courseID) {
@@ -81,7 +92,8 @@ public class Course {
     @Override
     public String toString() {
         return "Course{" +
-                "courseID=" + courseID +
+                "UserID=" + userID +
+                ", courseID=" + courseID +
                 ", instructor='" + instructor + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", description='" + description + '\'' +
