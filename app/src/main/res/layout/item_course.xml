@@ -30,6 +30,25 @@
             android:layout_below="@id/tvCourseName"
             android:textSize="24sp"
             />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toLeftOf="@id/btnDelete"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_edit"
+            />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_delete"
+            />
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
 
