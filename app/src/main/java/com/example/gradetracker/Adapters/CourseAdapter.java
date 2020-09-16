@@ -2,12 +2,15 @@
 package com.example.gradetracker.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.gradetracker.DB.AppDatabase;
+import com.example.gradetracker.EditCourseActivity;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.databinding.ItemCourseBinding;
 
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
     private List<Course> mCourses;
     private ItemCourseBinding itemCourseBinding;
+    private AppDatabase db;
 
     public CourseAdapter(List<Course> courses) {
         mCourses = courses;
@@ -49,16 +53,46 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Working", Toast.LENGTH_LONG).show();
+            db = AppDatabase.getInstance(itemView.getContext());
         }
 
         public void bind(Course currentCourse) {
             itemCourseBinding.tvCourseName.setText(currentCourse.getCourseName());
             itemCourseBinding.tvInstructorName.setText(currentCourse.getInstructor());
+            itemCourseBinding.btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(view.getContext(), "Edit", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(view.getContext(), EditCourseActivity.class);
+                    view.getContext().startActivity(intent);
+                }
+            });
+
+            itemCourseBinding.btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db.courseDao().deleteCourse(mCourses.get(getAdapterPosition()));
+                    deleteItem(getAdapterPosition());
+                }
+            });
+
+            itemCourseBinding.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(view.getContext(), "Nice", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "Clicking", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void deleteItem(int position) {
+        mCourses.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mCourses.size());
     }
 }
