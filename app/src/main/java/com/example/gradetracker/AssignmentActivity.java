@@ -12,8 +12,10 @@ import android.view.View;
 import com.example.gradetracker.Adapters.AssignmentAdapter;
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.Model.Assignment;
+import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.databinding.ActivityAssignmentBinding;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AssignmentActivity extends AppCompatActivity {
@@ -25,25 +27,36 @@ public class AssignmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //todo: set static text
-
-        db = AppDatabase.getInstance(getApplicationContext());
         activityAssignmentBinding = ActivityAssignmentBinding.inflate(getLayoutInflater());
         View view = activityAssignmentBinding.getRoot();
         setContentView(view);
-
 
         Intent intent = getIntent();
         course_id = intent.getIntExtra(COURSE_ID, -1);
         Log.d("Course ID", Integer.toString(course_id));
 
+        db = AppDatabase.getInstance(getApplicationContext());
+
+        Course course = db.courseDao().getCourseById(course_id);
+
+        activityAssignmentBinding.tvCourseName.setText(course.getCourseName());
+        activityAssignmentBinding.tvInstructor.setText(course.getInstructor());
+        activityAssignmentBinding.tvDescription.setText(course.getDescription());
+        activityAssignmentBinding.tvStartDate.setText(course.getStartDate());
+        activityAssignmentBinding.tvEndDate.setText(course.getEndDate());
+        activityAssignmentBinding.tvCourseGrade.setText("Overall Grade: " + Double.toString(getOverallGrade()));
+        activityAssignmentBinding.tvTestGrade.setText("Test Grade : " + Double.toString(getOverallTestGrade()));
+        activityAssignmentBinding.tvQuizGrade.setText("Quiz Grade: " + Double.toString(getOverallQuizGrade()));
+        activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade: " + Double.toString(getOverallHomeworkGrade()));
+        activityAssignmentBinding.tvLabGrade.setText("Lab Grade: " + Double.toString(getOverallLabGrade()));
+
 //        createAssignments();
-        AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(1));
+
+
+        AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id));
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
 
-
-        getOverallGrade();
 
         activityAssignmentBinding.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +79,9 @@ public class AssignmentActivity extends AppCompatActivity {
         return intent;
     }
 
-    public static Intent getIntentFromEditActivity(Context context) {
-        Intent intent = new Intent(context, AssignmentActivity.class);
-        return intent;
-    }
+
     public void createAssignments() {
-//        db.AssignmentDao().deleteAllAssignment();
+        db.AssignmentDao().deleteAllAssignment();
         db.AssignmentDao().insertAssignment(new Assignment("Assignment 1", "Brief description", 100, 78, "02-15-2020", "02-17-2020", "Test", course_id));
         db.AssignmentDao().insertAssignment(new Assignment("Assignment 2", "Brief description", 100, 86, "02-15-2020", "02-17-2020", "Test", course_id));
         db.AssignmentDao().insertAssignment(new Assignment("Assignment 3", "Brief description", 100, 65, "02-15-2020", "02-17-2020", "Test", course_id));

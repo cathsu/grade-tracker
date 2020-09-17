@@ -90,8 +90,9 @@ public class EditAssignmentActivity extends AppCompatActivity {
             originalAssignment.setDueDate(dueDate);
             categoryButton = findViewById(activityEditAssignmentBinding.categoryButtonGroup.getCheckedRadioButtonId());
             originalAssignment.setCategoryName(categoryButton.getText().toString());
+//            Log.d("Integer", Integer.toString(originalAssignment.getCourseID()));
             db.AssignmentDao().updateAssignment(originalAssignment);
-            Intent intent = AssignmentActivity.getIntentFromEditActivity(getApplicationContext());
+            Intent intent = AssignmentActivity.getIntent(getApplicationContext(), course_id);
             startActivity(intent);
         }
     }
