@@ -16,7 +16,6 @@ import com.example.gradetracker.databinding.ActivityCoursesBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -35,17 +34,10 @@ public class CoursesActivity extends AppCompatActivity {
         View view = activityCoursesBinding.getRoot();
         setContentView(view);
         String username = getIntent().getStringExtra("username");
+        assert username != null;
+        Log.d("CourseActivity", username);
         user = db.userDao().getUserWithUsername(username);
-        activityCoursesBinding.fabAddCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NewCourseActivity.class);
-                intent.putExtra("username", user.getUserName());
-                startActivityForResult(intent, 1);
-            }
-        });
         courses = db.courseDao().getCoursesByUserId(user.getUserID());
-        Log.d("CoursesActivity", courses.toString());
         if (courses.isEmpty()) {
             Toast toast = Toast.makeText(getApplicationContext(), "No courses to display. Feel free to add some!", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -54,7 +46,34 @@ public class CoursesActivity extends AppCompatActivity {
             courseAdapter = new CourseAdapter(courses);
             activityCoursesBinding.rvCourses.setAdapter(courseAdapter);
             activityCoursesBinding.rvCourses.setLayoutManager(new LinearLayoutManager(this));
+            courseAdapter.setOnItemClickListener(new CourseAdapter.OnItemClickListener() {
+                @Override
+                public void onEditClick(int p) {
+                    editItem(p);
+                    courses.set(p, courses.get(p));
+                    courseAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onDeleteClick(int p) {
+                    deleteItem(p);
+                }
+
+                @Override
+                public void onViewClick(int p) {
+                    Toast.makeText(CoursesActivity.this, "hello", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
+        activityCoursesBinding.fabAddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), NewCourseActivity.class);
+                intent.putExtra("username", user.getUserName());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -62,14 +81,17 @@ public class CoursesActivity extends AppCompatActivity {
         // user can only sign out by clicking log out button
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == 1) {
-            courses = db.courseDao().getCoursesByUserId(user.getUserID());
-            courseAdapter = new CourseAdapter(courses);
-            activityCoursesBinding.rvCourses.setAdapter(courseAdapter);
-            activityCoursesBinding.rvCourses.setLayoutManager(new LinearLayoutManager(this));
-        }
+    private void deleteItem(int position) {
+        db.courseDao().deleteCourse(courses.get(position));
+        courses.remove(position);
+        courseAdapter.notifyItemRemoved(position);
+        courseAdapter.notifyItemRangeChanged(position, courses.size());
+    }
+
+    private void editItem(int position) {
+        Intent intent = new Intent(getApplicationContext(), EditCourseActivity.class);
+        intent.putExtra("courseId", courses.get(position).getCourseID());
+        intent.putExtra("username", user.getUserName());
+        startActivity(intent);
     }
 }

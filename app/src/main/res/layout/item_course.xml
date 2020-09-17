@@ -8,7 +8,8 @@
     android:layout_width="match_parent"
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true"
-    card_view:cardElevation="5dp">
+    card_view:cardElevation="5dp"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout
         android:layout_width="match_parent"
