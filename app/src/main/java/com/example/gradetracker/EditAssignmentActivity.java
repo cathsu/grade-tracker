@@ -74,7 +74,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
         String name = activityEditAssignmentBinding.editTextAssignmentName.getText().toString();
         String description = activityEditAssignmentBinding.editTextDescription.getText().toString();
         String earnedPointsString = activityEditAssignmentBinding.editTextEarnedPoints.getText().toString();
-        String maxPointsString = activityEditAssignmentBinding.editTextAssignmentName.getText().toString();
+        String maxPointsString = activityEditAssignmentBinding.editTextMaxPoints.getText().toString();
         String assignedDate = activityEditAssignmentBinding.editTextAssignedDate.getText().toString();
         String dueDate = activityEditAssignmentBinding.editTextDueDate.getText().toString();
         Integer categoryId = activityEditAssignmentBinding.categoryButtonGroup.getCheckedRadioButtonId();
