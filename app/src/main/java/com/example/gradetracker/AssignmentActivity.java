@@ -12,8 +12,10 @@ import android.view.View;
 import com.example.gradetracker.Adapters.AssignmentAdapter;
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.Model.Assignment;
+import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.databinding.ActivityAssignmentBinding;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AssignmentActivity extends AppCompatActivity {
@@ -25,23 +27,48 @@ public class AssignmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = AppDatabase.getInstance(getApplicationContext());
         activityAssignmentBinding = ActivityAssignmentBinding.inflate(getLayoutInflater());
         View view = activityAssignmentBinding.getRoot();
         setContentView(view);
-
 
         Intent intent = getIntent();
         course_id = intent.getIntExtra(COURSE_ID, -1);
         Log.d("Course ID", Integer.toString(course_id));
 
-        createAssignments();
-        AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(1));
+        db = AppDatabase.getInstance(getApplicationContext());
+
+        Course course = db.courseDao().getCourseById(course_id);
+
+        activityAssignmentBinding.tvCourseName.setText(course.getCourseName());
+        activityAssignmentBinding.tvInstructor.setText(course.getInstructor());
+        activityAssignmentBinding.tvDescription.setText(course.getDescription());
+        activityAssignmentBinding.tvStartDate.setText(course.getStartDate());
+        activityAssignmentBinding.tvEndDate.setText(course.getEndDate());
+        activityAssignmentBinding.tvCourseGrade.setText("Overall Grade: " + Double.toString(getOverallGrade()));
+        activityAssignmentBinding.tvTestGrade.setText("Test Grade : " + Double.toString(getOverallTestGrade()));
+        activityAssignmentBinding.tvQuizGrade.setText("Quiz Grade: " + Double.toString(getOverallQuizGrade()));
+        activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade: " + Double.toString(getOverallHomeworkGrade()));
+        activityAssignmentBinding.tvLabGrade.setText("Lab Grade: " + Double.toString(getOverallLabGrade()));
+
+//        createAssignments();
+
+
+        AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id));
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
 
 
-        getOverallGrade();
+        activityAssignmentBinding.editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Assignment assignment = db.AssignmentDao().getAllAssignments().get(0);
+                Log.d("TESTING", assignment.toString());
+//                Intent intent = new Intent(AssignmentActivity.this, EditAssignmentActivity.class);
+//                startActivity(intent);
+                Intent intent = EditAssignmentActivity.getIntent(getApplicationContext(), course_id, assignment.getAssignmentID(), assignment.getName(), assignment.getAssignmentDescription(), assignment.getEarnedPoints(), assignment.getMaxPoints(), assignment.getAssignedDate(), assignment.getDueDate(), assignment.getCategoryName());
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -51,6 +78,7 @@ public class AssignmentActivity extends AppCompatActivity {
         intent.putExtra(COURSE_ID, course_id);
         return intent;
     }
+
 
     public void createAssignments() {
         db.AssignmentDao().deleteAllAssignment();

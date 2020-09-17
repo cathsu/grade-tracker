@@ -2,6 +2,7 @@ package com.example.gradetracker.DB;
 
 import com.example.gradetracker.Model.Course;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.room.Dao;
@@ -52,4 +53,8 @@ public interface CourseDao {
 
     @Query("SELECT * FROM course WHERE user_id = :userId")
     List<Course> getCoursesByUserId(Integer userId);
+
+    @Query("SELECT * FROM course WHERE course_id = :courseId")
+    Course getCourseById(Integer courseId);
+
 }

@@ -6,18 +6,23 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.Model.Assignment;
+import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 import com.example.gradetracker.databinding.ActivityMainBinding;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -80,6 +85,21 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.assignmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                db.courseDao().deleteAllCourses();
+//                db.userDao().deleteAllUsers();
+//                User user = new User("Usernmame", "Password", "firstName", "lastName",  new ArrayList<Course>());
+//                db.userDao().insertUser(user);
+//                Integer userID = db.userDao().getAllUsers().get(0).getUserID();
+//                Course course1 = new Course(userID, "Drew Clickenbeard",
+//                        "CST 438",
+//                        "Software engineering class",
+//                        LocalDate.of(2020, 8, 24).toString(),
+//                        LocalDate.of(2020, 12, 18).toString(),
+//                        90.0);
+//                db.courseDao().insertCourse(course1);
+//                int courseID = db.courseDao().getAllCourses().get(0).getCourseID();
+//                Log.d("TESTING1", "HELLO");
+//                Log.d("TESTING", Integer.toString(courseID));
                 Intent intent = AssignmentActivity.getIntent(getApplicationContext(), 1);
                 startActivity(intent);
             }
