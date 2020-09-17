@@ -20,19 +20,10 @@ import com.example.gradetracker.databinding.ActivityEditAssignmentBinding;
 public class EditAssignmentActivity extends AppCompatActivity {
 
     private ActivityEditAssignmentBinding activityEditAssignmentBinding;
-    private static final String NAME = "name";
-    private static final String DESCRIPTION = "description";
-    private static final String  EARNED_POINTS = "earnedPoints";
-    private static final String MAX_POINTS = "maxPoints";
-    private static final String ASSIGNED_DATE = "assignedDate";
-    private static final String DUE_DATE = "dueDate";
-    private static final String CATEGORY = "category";
-    private static final String COURSE_ID = "course_id";
     private static final String ASSIGNMENT_ID = "course_id";
     private RadioButton categoryButton;
     private AppDatabase db;
-    private Integer course_id;
-    private Integer assignment_id;
+    private Assignment assignment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,32 +31,24 @@ public class EditAssignmentActivity extends AppCompatActivity {
         activityEditAssignmentBinding = ActivityEditAssignmentBinding.inflate(getLayoutInflater());
         View view = activityEditAssignmentBinding.getRoot();
         Intent intent = getIntent();
-        activityEditAssignmentBinding.editTextAssignmentName.setText(intent.getStringExtra(NAME));
-        activityEditAssignmentBinding.editTextDescription.setText(intent.getStringExtra(DESCRIPTION));
-        activityEditAssignmentBinding.editTextEarnedPoints.setText(Integer.toString(intent.getIntExtra(EARNED_POINTS, -1)));
-        activityEditAssignmentBinding.editTextMaxPoints.setText(Integer.toString(intent.getIntExtra(MAX_POINTS, -1)));
-        activityEditAssignmentBinding.editTextAssignedDate.setText(intent.getStringExtra(ASSIGNED_DATE));
-        activityEditAssignmentBinding.editTextDueDate.setText(intent.getStringExtra(DUE_DATE));
-
-        checkCategoryButton(intent.getStringExtra(CATEGORY));
-        course_id = intent.getIntExtra(COURSE_ID, -1);
-        assignment_id = intent.getIntExtra(ASSIGNMENT_ID, -1);
-        setContentView(view);
         db = AppDatabase.getInstance(getApplicationContext());
+        assignment = db.AssignmentDao().getAssignmentWithId(intent.getIntExtra(ASSIGNMENT_ID, -1));
+        activityEditAssignmentBinding.editTextAssignmentName.setText(assignment.getName());
+        activityEditAssignmentBinding.editTextDescription.setText(assignment.getAssignmentDescription());
+        activityEditAssignmentBinding.editTextEarnedPoints.setText(Integer.toString(assignment.getEarnedPoints()));
+        activityEditAssignmentBinding.editTextMaxPoints.setText(Integer.toString(assignment.getMaxPoints()));
+        activityEditAssignmentBinding.editTextAssignedDate.setText(assignment.getAssignedDate());
+        activityEditAssignmentBinding.editTextDueDate.setText(assignment.getDueDate());
+        checkCategoryButton(assignment.getCategoryName());
+
+        setContentView(view);
+
     }
 
 
-    public static Intent getIntent(Context context, Integer course_id, Integer assignment_id, String name, String description, Integer earnedPoints, Integer maxPoints, String assignedDate, String dueDate, String category) {
+    public static Intent getIntent(Context context, Integer assignment_id) {
         Intent intent = new Intent(context, EditAssignmentActivity.class);
-        intent.putExtra(COURSE_ID, course_id);
         intent.putExtra(ASSIGNMENT_ID, assignment_id);
-        intent.putExtra(NAME, name);
-        intent.putExtra(DESCRIPTION, description);
-        intent.putExtra(EARNED_POINTS, earnedPoints);
-        intent.putExtra(MAX_POINTS, maxPoints);
-        intent.putExtra(ASSIGNED_DATE, assignedDate);
-        intent.putExtra(DUE_DATE, dueDate);
-        intent.putExtra(CATEGORY, category);
         return intent;
     }
 
@@ -77,28 +60,24 @@ public class EditAssignmentActivity extends AppCompatActivity {
         String maxPointsString = activityEditAssignmentBinding.editTextMaxPoints.getText().toString();
         String assignedDate = activityEditAssignmentBinding.editTextAssignedDate.getText().toString();
         String dueDate = activityEditAssignmentBinding.editTextDueDate.getText().toString();
-        Integer categoryId = activityEditAssignmentBinding.categoryButtonGroup.getCheckedRadioButtonId();
-
 
         Boolean validEdit = isEditValid(name, description, earnedPointsString, maxPointsString, assignedDate, dueDate);
         if (validEdit) {
-            Assignment originalAssignment = db.AssignmentDao().getAssignmentWithId(assignment_id);
-            originalAssignment.setName(name);
-            originalAssignment.setAssignmentDescription(description);
-            originalAssignment.setEarnedPoints(Integer.parseInt(earnedPointsString));
-            originalAssignment.setAssignedDate(assignedDate);
-            originalAssignment.setDueDate(dueDate);
+            assignment.setName(name);
+            assignment.setAssignmentDescription(description);
+            assignment.setEarnedPoints(Integer.parseInt(earnedPointsString));
+            assignment.setMaxPoints(Integer.parseInt(maxPointsString));
+            assignment.setAssignedDate(assignedDate);
+            assignment.setDueDate(dueDate);
             categoryButton = findViewById(activityEditAssignmentBinding.categoryButtonGroup.getCheckedRadioButtonId());
-            originalAssignment.setCategoryName(categoryButton.getText().toString());
-//            Log.d("Integer", Integer.toString(originalAssignment.getCourseID()));
-            db.AssignmentDao().updateAssignment(originalAssignment);
-            Intent intent = AssignmentActivity.getIntent(getApplicationContext(), course_id);
+            assignment.setCategoryName(categoryButton.getText().toString());
+            db.AssignmentDao().updateAssignment(assignment);
+            Intent intent = AssignmentActivity.getIntent(getApplicationContext(), assignment.getCourseID());
             startActivity(intent);
         }
     }
 
     private void checkCategoryButton(String category) {
-        String testText = activityEditAssignmentBinding.testButton.getText().toString();
         if (activityEditAssignmentBinding.testButton.getText().toString().equals(category)) {
             activityEditAssignmentBinding.testButton.setChecked(true);
         }
