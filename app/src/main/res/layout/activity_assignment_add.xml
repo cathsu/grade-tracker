@@ -5,19 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AssignmentAddActivity">
-    <TextView
-        android:id="@+id/tvTitle"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvAssignedName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="Enter assignment information below"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="16dp"
+        android:hint="Enter the Assigned Name"
+        app:counterEnabled="true"
+        app:counterMaxLength="100"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAssignedDate">
+
+        <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etAssignedName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvAssignedDate"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -32,7 +40,7 @@
         app:helperTextEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+        app:layout_constraintTop_toBottomOf="@id/tvAssignedName">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAssignedDate"
             android:layout_width="match_parent"
