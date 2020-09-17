@@ -20,4 +20,6 @@ public class EditCourseActivity extends AppCompatActivity {
         setContentView(view);
         db = AppDatabase.getInstance(getApplicationContext());
     }
+
+
 }

@@ -3,11 +3,14 @@ package com.example.gradetracker.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.R;
 
@@ -15,7 +18,6 @@ import java.util.ArrayList;
 
 public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
     private ArrayList<Assignment> mAssignmentList;
-
 
     public AssignmentAdapter(ArrayList<Assignment> assignmentList) {
         mAssignmentList = assignmentList;
@@ -29,7 +31,8 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         public TextView mEarnedMaxPoints;
         public TextView mCategory;
         public TextView mName;
-
+        public Button mEdit;
+        public Button mDelete;
 
         public AssignmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -40,6 +43,8 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
             mAssignmentGrade = itemView.findViewById(R.id.tvGrade);
             mEarnedMaxPoints = itemView.findViewById(R.id.tvEarnedMaxPoints);
             mCategory = itemView.findViewById(R.id.tvCategory);
+            mEdit = itemView.findViewById(R.id.btnEdit);
+            mDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
     @NonNull
@@ -52,7 +57,7 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AssignmentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AssignmentViewHolder holder, final int position) {
         Assignment assignmentItem = mAssignmentList.get(position);
         holder.mName.setText(assignmentItem.getName());
         holder.mDescription.setText(assignmentItem.getAssignmentDescription());
@@ -61,6 +66,22 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         holder.mAssignmentGrade.setText(Double.toString(assignmentItem.getPercentageGrade()));
         holder.mEarnedMaxPoints.setText(assignmentItem.getEarnedPoints() + " / " + assignmentItem.getMaxPoints());
         holder.mCategory.setText(assignmentItem.getCategoryName());
+        holder.mEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Edit Button Works", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppDatabase db = AppDatabase.getInstance(view.getContext());
+                db.AssignmentDao().deleteAssignment(mAssignmentList.get(position));
+                mAssignmentList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemChanged(position);
+            }
+        });
 
     }
 
