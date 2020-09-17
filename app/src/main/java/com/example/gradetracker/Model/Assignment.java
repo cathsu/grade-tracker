@@ -94,6 +94,30 @@ public class Assignment {
         return courseID;
     }
 
+    public void setAssignmentDescription(String assignmentDescription) {
+        this.assignmentDescription = assignmentDescription;
+    }
+
+    public void setMaxPoints(Integer maxPoints) {
+        this.maxPoints = maxPoints;
+    }
+
+    public void setEarnedPoints(Integer earnedPoints) {
+        this.earnedPoints = earnedPoints;
+    }
+
+    public void setAssignedDate(String assignedDate) {
+        this.assignedDate = assignedDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     public Double getPercentageGrade() {
         double gradeValue = (((double) earnedPoints) / maxPoints)*100 ;
         return gradeValue;

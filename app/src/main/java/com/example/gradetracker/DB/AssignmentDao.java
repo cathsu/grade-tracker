@@ -54,7 +54,11 @@ public interface AssignmentDao {
     @Query("SELECT * FROM assignment WHERE course_id = :courseId and category_name = :categoryName")
     List<Assignment> getAssignmentsWithCourseIdAndCategory(int courseId, String categoryName);
 
-    @Query("SELECT * FROM assignment WHERE course_id = :courseId")
+    @Query("SELECT * FROM assignment WHERE course_id = :courseId ORDER by category_name")
     List<Assignment> getAssignmentsWithCourseId(int courseId);
+
+    @Query("SELECT * FROM assignment WHERE assignmentID = :assignmentId")
+    Assignment getAssignmentWithId(int assignmentId);
+
 }
 

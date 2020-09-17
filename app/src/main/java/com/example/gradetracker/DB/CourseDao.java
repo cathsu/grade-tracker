@@ -52,4 +52,5 @@ public interface CourseDao {
 
     @Query("SELECT * FROM course WHERE user_id = :userId")
     List<Course> getCoursesByUserId(Integer userId);
+
 }

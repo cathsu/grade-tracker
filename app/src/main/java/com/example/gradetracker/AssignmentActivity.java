@@ -25,6 +25,8 @@ public class AssignmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //todo: set static text
+
         db = AppDatabase.getInstance(getApplicationContext());
         activityAssignmentBinding = ActivityAssignmentBinding.inflate(getLayoutInflater());
         View view = activityAssignmentBinding.getRoot();
@@ -35,13 +37,25 @@ public class AssignmentActivity extends AppCompatActivity {
         course_id = intent.getIntExtra(COURSE_ID, -1);
         Log.d("Course ID", Integer.toString(course_id));
 
-        createAssignments();
+//        createAssignments();
         AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(1));
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
 
 
         getOverallGrade();
+
+        activityAssignmentBinding.editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Assignment assignment = db.AssignmentDao().getAllAssignments().get(0);
+                Log.d("TESTING", assignment.toString());
+//                Intent intent = new Intent(AssignmentActivity.this, EditAssignmentActivity.class);
+//                startActivity(intent);
+                Intent intent = EditAssignmentActivity.getIntent(getApplicationContext(), course_id, assignment.getAssignmentID(), assignment.getName(), assignment.getAssignmentDescription(), assignment.getEarnedPoints(), assignment.getMaxPoints(), assignment.getAssignedDate(), assignment.getDueDate(), assignment.getCategoryName());
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -52,8 +66,12 @@ public class AssignmentActivity extends AppCompatActivity {
         return intent;
     }
 
+    public static Intent getIntentFromEditActivity(Context context) {
+        Intent intent = new Intent(context, AssignmentActivity.class);
+        return intent;
+    }
     public void createAssignments() {
-        db.AssignmentDao().deleteAllAssignment();
+//        db.AssignmentDao().deleteAllAssignment();
         db.AssignmentDao().insertAssignment(new Assignment("Assignment 1", "Brief description", 100, 78, "02-15-2020", "02-17-2020", "Test", course_id));
         db.AssignmentDao().insertAssignment(new Assignment("Assignment 2", "Brief description", 100, 86, "02-15-2020", "02-17-2020", "Test", course_id));
         db.AssignmentDao().insertAssignment(new Assignment("Assignment 3", "Brief description", 100, 65, "02-15-2020", "02-17-2020", "Test", course_id));
