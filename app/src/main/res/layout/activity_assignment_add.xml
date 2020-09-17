@@ -151,46 +151,23 @@
             android:lines="4" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvCategoryName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="24dp"
-        app:counterMaxLength="300"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Enter Category Na,e"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourseId">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etCategoryName"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:gravity="top|start"
-            android:inputType="textMultiLine"
-            android:lines="4" />
-    </com.google.android.material.textfield.TextInputLayout>
- <!--   <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Choose Category"
-        app:layout_constraintTop_toBottomOf="@+id/tvCourseId"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+    <TextView
+    android:id="@+id/tvChooseCategory"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:text="Choose Category"
+        android:gravity="center"
+    app:layout_constraintTop_toBottomOf="@+id/tvCourseId"
+    tools:ignore="MissingConstraints"
+    tools:layout_editor_absoluteX="0dp" />
 
     <RadioGroup
         android:id ="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center"
         tools:ignore="ExtraText,MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="517dp">
@@ -202,37 +179,32 @@
             android:id="@+id/Test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="checkButton"
             android:text="Test" />
 
         <RadioButton
             android:id="@+id/Quiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="checkButton"
             android:text="Quiz" />
 
         <RadioButton
             android:id="@+id/Homework"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="checkButton"
             android:text="Homework" />
 
         <RadioButton
             android:id="@+id/Lab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="checkButton"
             android:text="Lab" />
     </RadioGroup>
--->
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="ADD COURSE"
+        android:text="ADD ASSIGNMENT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

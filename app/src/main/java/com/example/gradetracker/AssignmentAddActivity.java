@@ -20,14 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AssignmentAddActivity  extends AppCompatActivity{
 
 
-
     private EditText mAssignedDate;
     private EditText mDueDate;
     private EditText mEarnedPoints;
     private EditText mMaxPoints;
     private EditText mDescription;
     private EditText mCourseId;
-    private EditText mCategoryName;
 
     private RadioGroup mradioGroup;
 
@@ -47,7 +45,7 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         mMaxPoints = findViewById(R.id.tvMaxPoints);
         mDescription = findViewById(R.id.tvDescription);
         mCourseId = findViewById(R.id.tvCourseId);
-        mCategoryName = findViewById(R.id.tvCategoryName);
+        mradioGroup= findViewById(R.id.radioGroup);
 
 
         mButton = findViewById(R.id.button);
@@ -69,7 +67,10 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         final int maxPoints = Integer.parseInt(mMaxPoints.getText().toString());
         final String description = mDescription.getText().toString();
         final int courseId = Integer.parseInt(mCourseId.getText().toString());
-        final String categoryName = mCategoryName.getText().toString();
+        int selectedRadioButton = mradioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = findViewById(selectedRadioButton);
+        final String categoryName = radioButton.getText().toString();
+
 
         Assignment a = new Assignment(description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, courseId);
 
