@@ -1,5 +1,7 @@
 package com.example.gradetracker;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AssignmentAddActivity  extends AppCompatActivity{
 
-
+    private static String COURSE_ID = "course_id";
+    private EditText mAssignedName;
     private EditText mAssignedDate;
     private EditText mDueDate;
     private EditText mEarnedPoints;
@@ -28,9 +31,9 @@ public class AssignmentAddActivity  extends AppCompatActivity{
     private EditText mCourseId;
 
     private RadioGroup mradioGroup;
-
-
     private AppDatabase db;
+
+    private Integer course_id;
 
     private Button mButton;
 
@@ -39,12 +42,15 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_add);
 
+        Intent intent = getIntent();
+        course_id = intent.getIntExtra(COURSE_ID, -1);
+
+        mAssignedName = findViewById(R.id.tvAssignedName);
         mAssignedDate = findViewById(R.id.tvAssignedDate);
         mDueDate = findViewById(R.id.tvDueDate);
         mEarnedPoints = findViewById(R.id.tvEarnedPoints);
         mMaxPoints = findViewById(R.id.tvMaxPoints);
         mDescription = findViewById(R.id.tvDescription);
-        mCourseId = findViewById(R.id.tvCourseId);
         mradioGroup= findViewById(R.id.radioGroup);
 
 
@@ -59,8 +65,9 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         });
     }
 
-    void addCourse(){
+    private void addCourse(){
 
+        String assignedName = mAssignedName.getText().toString();
         final String assignedDate = mAssignedDate.getText().toString();
         final String dueDate = mDueDate.getText().toString();
         final int earnedPoints = Integer.parseInt(mEarnedPoints.getText().toString());
@@ -72,10 +79,16 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         final String categoryName = radioButton.getText().toString();
 
 
-        Assignment a = new Assignment("Assignment", description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, courseId);
+        Assignment a = new Assignment(assignedName, description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, course_id);
 
         db.AssignmentDao().insertAssignment(a);
         Toast toast = Toast.makeText(getApplicationContext(), "Assignment has been Added",Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public static Intent getIntent(Context context, int course_id) {
+        Intent intent = new Intent(context, AssignmentActivity.class);
+        intent.putExtra(COURSE_ID, course_id);
+        return intent;
     }
 }

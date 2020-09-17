@@ -55,12 +55,11 @@ public class AssignmentActivity extends AppCompatActivity {
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
 
 
-        activityAssignmentBinding.editButton.setOnClickListener(new View.OnClickListener() {
+
+        activityAssignmentBinding.addAssignmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Assignment assignment = db.AssignmentDao().getAllAssignments().get(0);
-                Intent intent = EditAssignmentActivity.getIntent(getApplicationContext(),assignment.getAssignmentID());
-                startActivity(intent);
+
             }
         });
 
