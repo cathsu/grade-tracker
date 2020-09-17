@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.gradetracker.Adapters.AssignmentAdapter;
 import com.example.gradetracker.DB.AppDatabase;
@@ -22,6 +23,8 @@ public class AssignmentActivity extends AppCompatActivity {
     private static String COURSE_ID = "course_id";
     private ActivityAssignmentBinding activityAssignmentBinding;
     private int course_id;
+
+    private Button edit_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
 
     }
+
 
     public static Intent getIntent(Context context, int course_id) {
         Intent intent = new Intent(context, AssignmentActivity.class);

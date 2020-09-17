@@ -69,4 +69,6 @@ public class EditCourseActivity extends AppCompatActivity {
         activityEditCourseBinding.etEndDate.setText(endDate);
         activityEditCourseBinding.etDescription.setText(description);
     }
+
+
 }
