@@ -86,13 +86,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                     }
                 }
             });
-
-//            itemCourseBinding.cardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(view.getContext(), "click on view", Toast.LENGTH_SHORT).show();
-//                }
-//            });
         }
     }
 }
