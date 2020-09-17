@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NewCourseActivity extends AppCompatActivity {
     private static final String TAG = "NewCourseActivity";
-    private AppDatabase db;
     private ActivityNewCourseBinding activityNewCourseBinding;
     private User user;
 
@@ -23,7 +22,7 @@ public class NewCourseActivity extends AppCompatActivity {
         activityNewCourseBinding = ActivityNewCourseBinding.inflate(getLayoutInflater());
         View view = activityNewCourseBinding.getRoot();
         setContentView(view);
-        db = AppDatabase.getInstance(getApplicationContext());
+        final AppDatabase db = AppDatabase.getInstance(getApplicationContext());
         String username = getIntent().getStringExtra("username");
         user = db.userDao().getUserWithUsername(username);
         activityNewCourseBinding.button.setOnClickListener(new View.OnClickListener() {
@@ -35,17 +34,13 @@ public class NewCourseActivity extends AppCompatActivity {
                 String endDate = String.valueOf(activityNewCourseBinding.etEndDate.getText());
                 String description = String.valueOf(activityNewCourseBinding.etDescription.getText());
                 Integer userId = user.getUserID();
-                db.courseDao().insertCourse(new Course(userId, instructorName, courseName, description, startDate, endDate, null));
-                finish();
+                Course newCourse = new Course(userId, instructorName, courseName, description, startDate, endDate, null);
+                db.courseDao().insertCourse(newCourse);
+                Intent intent = new Intent(getApplicationContext(), CoursesActivity.class);
+                String username = getIntent().getStringExtra("username");
+                intent.putExtra("username", username);
+                startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void finish() {
-        Intent intent = new Intent();
-        intent.putExtra("added", user.getUserName());
-        setResult(1, intent);
-        super.finish();
     }
 }

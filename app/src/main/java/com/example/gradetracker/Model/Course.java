@@ -79,6 +79,30 @@ public class Course {
         return grade;
     }
 
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LocalDate getStartDateAsLocalDate() {
         return LocalDate.parse(startDate);
