@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EditAssignmentActivity"></activity>
+        <activity android:name=".AssignmentAddActivity"></activity>
         <activity android:name=".EditCourseActivity"></activity>
         <activity android:name=".AssignmentActivity" />
         <activity

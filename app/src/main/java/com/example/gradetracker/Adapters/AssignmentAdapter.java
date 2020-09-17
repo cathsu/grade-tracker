@@ -21,11 +21,6 @@ import java.util.ArrayList;
 public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
     private ArrayList<Assignment> mAssignmentList;
 
-    public interface OnItemClickListener {
-        void onEditClick(int p);
-        void onDeleteClick(int p);
-        void onViewClick(int p);
-    }
 
     public AssignmentAdapter(ArrayList<Assignment> assignmentList) {
         mAssignmentList = assignmentList;
@@ -41,6 +36,7 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         public TextView mName;
         public Button mEdit;
         public Button mDelete;
+        public Button mAdd;
 
         public AssignmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,6 +87,7 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
                 notifyItemChanged(position);
             }
         });
+
 
     }
 

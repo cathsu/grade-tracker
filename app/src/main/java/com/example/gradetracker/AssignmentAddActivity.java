@@ -42,20 +42,21 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_add);
 
+        db = AppDatabase.getInstance(getApplicationContext());
         Intent intent = getIntent();
         course_id = intent.getIntExtra(COURSE_ID, -1);
 
-        mAssignedName = findViewById(R.id.tvAssignedName);
-        mAssignedDate = findViewById(R.id.tvAssignedDate);
-        mDueDate = findViewById(R.id.tvDueDate);
-        mEarnedPoints = findViewById(R.id.tvEarnedPoints);
-        mMaxPoints = findViewById(R.id.tvMaxPoints);
-        mDescription = findViewById(R.id.tvDescription);
+        mAssignedName = findViewById(R.id.etAssignedDate);
+        mAssignedDate = findViewById(R.id.etAssignedDate);
+        mDueDate = findViewById(R.id.etAssignedDate);
+        mEarnedPoints = findViewById(R.id.etAssignedDate);
+        mMaxPoints = findViewById(R.id.etAssignedDate);
+        mDescription = findViewById(R.id.etAssignedDate);
         mradioGroup= findViewById(R.id.radioGroup);
 
 
         mButton = findViewById(R.id.button);
-        db = AppDatabase.getInstance(getApplicationContext());
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +74,6 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         final int earnedPoints = Integer.parseInt(mEarnedPoints.getText().toString());
         final int maxPoints = Integer.parseInt(mMaxPoints.getText().toString());
         final String description = mDescription.getText().toString();
-        final int courseId = Integer.parseInt(mCourseId.getText().toString());
         int selectedRadioButton = mradioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(selectedRadioButton);
         final String categoryName = radioButton.getText().toString();
@@ -87,7 +87,7 @@ public class AssignmentAddActivity  extends AppCompatActivity{
     }
 
     public static Intent getIntent(Context context, int course_id) {
-        Intent intent = new Intent(context, AssignmentActivity.class);
+        Intent intent = new Intent(context, AssignmentAddActivity.class);
         intent.putExtra(COURSE_ID, course_id);
         return intent;
     }

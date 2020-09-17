@@ -4,172 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AssignmentAddActivity">
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvAssignedName"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+    tools:context=".EditAssignmentActivity">
+
+    <EditText
+        android:id="@+id/editTextAssignmentName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Enter the Assigned Name"
-        app:counterEnabled="true"
-        app:counterMaxLength="100"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
+        android:ems="10"
+        android:hint="Enter assignment name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <EditText
+        android:id="@+id/editTextMaxPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Enter total points"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etAssignedName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvAssignedDate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAssignmentName" />
+
+    <EditText
+        android:id="@+id/editTextEarnedPoints"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Enter the Assigned Date"
-        app:counterEnabled="true"
-        app:counterMaxLength="100"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Enter earned points"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAssignedName">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etAssignedDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvDueDate"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMaxPoints" />
+
+    <EditText
+        android:id="@+id/editTextAssignedDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="24dp"
-        android:hint="Enter the Due Date"
-        app:counterMaxLength="50"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Enter assigned date"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAssignedDate">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDueDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvEarnedPoints"
-        android:layout_width="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEarnedPoints" />
+
+    <EditText
+        android:id="@+id/editTextDueDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_margin="16dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Enter Earned Points"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Enter due date"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDueDate">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEarnedPoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvMaxPoints"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="24dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Enter Max Points"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEarnedPoints">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMaxPoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginTop="24dp"
-        app:counterMaxLength="300"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="Enter Assignment Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMaxPoints">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDescription"
-            android:layout_width="match_parent"
-            android:layout_height="51dp"
-            android:gravity="top|start"
-            android:inputType="textMultiLine"
-            android:lines="4" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <TextView
-        android:id="@+id/tvChooseCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Choose Category"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAssignedDate" />
+
     <RadioGroup
-        android:id ="@+id/radioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:ignore="ExtraText,MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="517dp">
+        android:id="@+id/categoryButtonGroup"
+        android:layout_width="235dp"
+        android:layout_height="209dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="84dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription">
+        app:layout_constraintTop_toBottomOf="@+id/tvGradeCategoryLabel">
+
         <RadioButton
-            android:id="@+id/Test"
-            android:layout_width="wrap_content"
+            android:id="@+id/testButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Test" />
+
         <RadioButton
-            android:id="@+id/Quiz"
-            android:layout_width="wrap_content"
+            android:id="@+id/quizButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Quiz" />
+
         <RadioButton
-            android:id="@+id/Homework"
-            android:layout_width="wrap_content"
+            android:id="@+id/homeworkButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Homework" />
+
         <RadioButton
-            android:id="@+id/Lab"
-            android:layout_width="wrap_content"
+            android:id="@+id/labButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lab" />
     </RadioGroup>
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="ADD ASSIGNMENT"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Enter description of course"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryButtonGroup" />
+
+    <TextView
+        android:id="@+id/tvGradeCategoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Please select a grade category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDueDate" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="51dp"
+        android:onClick="edit"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

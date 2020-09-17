@@ -54,12 +54,11 @@ public class AssignmentActivity extends AppCompatActivity {
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
 
-
-
-        activityAssignmentBinding.addAssignmentBtn.setOnClickListener(new View.OnClickListener() {
+        activityAssignmentBinding.assignmentAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = AssignmentAddActivity.getIntent(getApplicationContext(), course_id);
+                startActivity(intent);
             }
         });
 
