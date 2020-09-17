@@ -1,5 +1,6 @@
 package com.example.gradetracker.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gradetracker.DB.AppDatabase;
+import com.example.gradetracker.EditAssignmentActivity;
 import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.R;
 
@@ -18,6 +20,12 @@ import java.util.ArrayList;
 
 public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
     private ArrayList<Assignment> mAssignmentList;
+
+    public interface OnItemClickListener {
+        void onEditClick(int p);
+        void onDeleteClick(int p);
+        void onViewClick(int p);
+    }
 
     public AssignmentAdapter(ArrayList<Assignment> assignmentList) {
         mAssignmentList = assignmentList;
@@ -69,7 +77,8 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         holder.mEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Edit Button Works", Toast.LENGTH_SHORT).show();
+                Intent intent = EditAssignmentActivity.getIntent(view.getContext(), mAssignmentList.get(position).getAssignmentID());
+                view.getContext().startActivity(intent);
             }
         });
         holder.mDelete.setOnClickListener(new View.OnClickListener() {

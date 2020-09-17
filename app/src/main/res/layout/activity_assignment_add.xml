@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AssignmentAddActivity">
-
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
@@ -19,7 +18,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvAssignedDate"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -40,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvDueDate"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -56,13 +53,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAssignedDate">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etDueDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvEarnedPoints"
         android:layout_width="0dp"
@@ -74,14 +69,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDueDate">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEarnedPoints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvMaxPoints"
         android:layout_width="0dp"
@@ -93,13 +85,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEarnedPoints">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etMaxPoints"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvDescription"
         android:layout_width="0dp"
@@ -115,7 +105,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMaxPoints">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etDescription"
             android:layout_width="match_parent"
@@ -124,8 +113,6 @@
             android:inputType="textMultiLine"
             android:lines="4" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvCourseId"
         android:layout_width="0dp"
@@ -141,7 +128,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCouseId"
             android:layout_width="match_parent"
@@ -150,18 +136,16 @@
             android:inputType="textMultiLine"
             android:lines="4" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <TextView
-    android:id="@+id/tvChooseCategory"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp"
-    android:text="Choose Category"
+        android:id="@+id/tvChooseCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Choose Category"
         android:gravity="center"
-    app:layout_constraintTop_toBottomOf="@+id/tvCourseId"
-    tools:ignore="MissingConstraints"
-    tools:layout_editor_absoluteX="0dp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/tvCourseId"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
     <RadioGroup
         android:id ="@+id/radioGroup"
         android:layout_width="match_parent"
@@ -174,25 +158,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription">
-
         <RadioButton
             android:id="@+id/Test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Test" />
-
         <RadioButton
             android:id="@+id/Quiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quiz" />
-
         <RadioButton
             android:id="@+id/Homework"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Homework" />
-
         <RadioButton
             android:id="@+id/Lab"
             android:layout_width="wrap_content"
@@ -208,6 +188,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

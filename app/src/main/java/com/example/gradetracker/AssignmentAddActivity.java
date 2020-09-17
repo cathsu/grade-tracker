@@ -72,7 +72,7 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         final String categoryName = radioButton.getText().toString();
 
 
-        Assignment a = new Assignment(description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, courseId);
+        Assignment a = new Assignment("Assignment", description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, courseId);
 
         db.AssignmentDao().insertAssignment(a);
         Toast toast = Toast.makeText(getApplicationContext(), "Assignment has been Added",Toast.LENGTH_LONG);
