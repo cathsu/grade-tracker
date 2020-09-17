@@ -33,9 +33,7 @@ public class AssignmentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         course_id = intent.getIntExtra(COURSE_ID, -1);
         Log.d("Course ID", Integer.toString(course_id));
-
         db = AppDatabase.getInstance(getApplicationContext());
-
         Course course = db.courseDao().getCourseById(course_id);
 
         activityAssignmentBinding.tvCourseName.setText(course.getCourseName());
