@@ -34,7 +34,7 @@ public interface CourseDao {
     List<Course> getCourseInstructor(String instructor);
 
     @Query("SELECT * FROM course WHERE course_name = :courseName")
-    List<Course> getCourseCourseName(String courseName);
+    List<Course> getCourseName(String courseName);
 
     @Query("SELECT * FROM course WHERE description = :description")
     List<Course> getCourseDescription(String description);
