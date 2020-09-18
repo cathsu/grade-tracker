@@ -63,6 +63,7 @@ public class Signup extends AppCompatActivity {
         validateCredentials();
     }
 
+
     /**
      * This method validates the data the user entered. It calls several helper functions to ensure
      * that the user has entered valid information. If the user's credentials
@@ -110,11 +111,13 @@ public class Signup extends AppCompatActivity {
         }
     }
 
+
     /**
      * This method checks if the username is already in the database.
      * @param username
      * @return true if username is not in the database, false if it is
      */
+
     private Boolean isUsernameUnique(String username) {
         User existingUser = db.userDao().getUserWithUsername(username);
         return existingUser == null? true : false;
