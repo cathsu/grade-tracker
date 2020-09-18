@@ -56,5 +56,4 @@ public interface CourseDao {
      */
     @Query("SELECT * FROM course WHERE course_id = :courseId")
     Course getCourseById(Integer courseId);
-
 }
