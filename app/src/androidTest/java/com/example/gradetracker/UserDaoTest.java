@@ -97,6 +97,8 @@ public class UserDaoTest {
         // retrieve all users
         ArrayList<User> users = (ArrayList<User>) db.userDao().getAllUsers();
         assertEquals(users.size(), 2);
+        assertEquals(users.get(0).getUserName(), "username");
+        assertEquals(users.get(1).getUserName(), "captain_marvel");
 
     }
 
