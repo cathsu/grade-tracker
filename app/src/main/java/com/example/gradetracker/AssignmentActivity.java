@@ -18,6 +18,7 @@ import com.example.gradetracker.databinding.ActivityAssignmentBinding;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+// Citation: https://www.java67.com/2014/06/how-to-format-float-or-double-number-java-example.html
 public class AssignmentActivity extends AppCompatActivity {
     private AppDatabase db;
     private static String COURSE_ID = "course_id";
