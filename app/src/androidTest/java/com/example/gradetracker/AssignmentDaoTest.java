@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 public class AssignmentDaoTest {
     private AppDatabase db;
@@ -40,10 +40,10 @@ public class AssignmentDaoTest {
         db.courseDao().insertCourse(course);
         Assignment assignment = new Assignment("Exam 1", "This is the first exam", 100, 84, "09-20-2020", "09-20-2020", "Test", course.getCourseID());
         db.AssignmentDao().insertAssignment(assignment);
-        ArrayList<Assignment> allAssignments = (ArrayList<Assignment>) db.AssignmentDao().getAllAssignments();
+        assignment.setAssignmentID(1);
 
         // retrieve assignment from database
-        Assignment dbAssignment = db.AssignmentDao().getAssignmentWithId(allAssignments.get(0).getAssignmentID());
+        Assignment dbAssignment = db.AssignmentDao().getAssignmentWithId(1);
 
         // ensure the retrieved assignment has valid attributes
         assertEquals(dbAssignment.getName(), "Exam 1");
@@ -62,18 +62,18 @@ public class AssignmentDaoTest {
         db.courseDao().insertCourse(course);
         Assignment assignment = new Assignment("Exam 1", "This is the first exam", 100, 84, "09-20-2020", "09-20-2020", "Test", course.getCourseID());
         db.AssignmentDao().insertAssignment(assignment);
+        assignment.setAssignmentID(1);
 
-        // retrieve the assignment from the database and check its validity
-        ArrayList<Assignment> allAssignments = (ArrayList<Assignment>) db.AssignmentDao().getAllAssignments();
-        Assignment dbAssignment = db.AssignmentDao().getAssignmentWithId(allAssignments.get(0).getAssignmentID());
-        assertEquals(dbAssignment.getName(), "Exam 1");
+        // retrieve assignment from database
+        Assignment dbAssignment = db.AssignmentDao().getAssignmentWithId(1);
 
         // update the data and check to make sure updates persisted
         dbAssignment.setName("Software Engineering Exam");
         dbAssignment.setEarnedPoints(88);
         db.AssignmentDao().updateAssignment(dbAssignment);
-        assertEquals(dbAssignment.getName(), "Software Engineering Exam");
-        assertEquals(dbAssignment.getEarnedPoints(), new Integer(88));
+        Assignment updatedDbAssignment = db.AssignmentDao().getAssignmentWithId(1);
+        assertEquals(updatedDbAssignment.getName(), "Software Engineering Exam");
+        assertEquals(updatedDbAssignment.getEarnedPoints(), new Integer(88));
     }
 
     @Test
@@ -83,16 +83,14 @@ public class AssignmentDaoTest {
         db.courseDao().insertCourse(course);
         Assignment assignment = new Assignment("Exam 1", "This is the first exam", 100, 84, "09-20-2020", "09-20-2020", "Test", course.getCourseID());
         db.AssignmentDao().insertAssignment(assignment);
+        assignment.setAssignmentID(1);
 
-        // retrieve the assignment from the database and check its validity
-        ArrayList<Assignment> allAssignments = (ArrayList<Assignment>) db.AssignmentDao().getAllAssignments();
-        Assignment dbAssignment = db.AssignmentDao().getAssignmentWithId(allAssignments.get(0).getAssignmentID());
-        assertEquals(dbAssignment.getName(), "Exam 1");
+        // retrieve assignment from database
+        Assignment dbAssignment = db.AssignmentDao().getAssignmentWithId(1);
 
         // delete assignment and check if assignment has been deleted
-        Integer assignmentId = dbAssignment.getAssignmentID();
         db.AssignmentDao().deleteAssignment(dbAssignment);
-        assertTrue(db.AssignmentDao().getAssignmentWithId(assignmentId) ==  null);
+        assertNull(db.AssignmentDao().getAssignmentWithId(1));
     }
 
     @Test
@@ -107,6 +105,7 @@ public class AssignmentDaoTest {
 
         // check if all assignments have been retrieved
         ArrayList<Assignment> allAssignments = (ArrayList<Assignment>) db.AssignmentDao().getAllAssignments();
+        assertEquals(allAssignments.size(), 2);
         assertEquals(allAssignments.get(0).getName(), "Exam 1");
         assertEquals(allAssignments.get(1).getName(), "Exam 2");
     }
