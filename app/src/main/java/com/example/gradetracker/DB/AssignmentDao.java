@@ -1,14 +1,14 @@
 package com.example.gradetracker.DB;
 
 
-import com.example.gradetracker.Model.Assignment;
-import com.example.gradetracker.Model.User;
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.gradetracker.Model.Assignment;
+
 import java.util.List;
 
 
