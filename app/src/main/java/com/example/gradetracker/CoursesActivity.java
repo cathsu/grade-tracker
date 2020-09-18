@@ -65,7 +65,6 @@ public class CoursesActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), AssignmentActivity.class);
                     intent.putExtra(COURSE_ID, courses.get(p).getCourseID());
                     startActivity(intent);
-                    Toast.makeText(CoursesActivity.this, "hello", Toast.LENGTH_SHORT).show();
                 }
             });
         }
