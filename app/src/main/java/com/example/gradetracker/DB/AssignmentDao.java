@@ -23,7 +23,7 @@ public interface AssignmentDao {
     void insertAssignment(Assignment assignment);
 
     /**
-     * Update attributes of an assignment already in the dataabase
+     * Update attributes of an assignment already in the database
      * @param assignment
      */
     @Update
