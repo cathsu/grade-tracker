@@ -61,5 +61,5 @@ public interface UserDao {
      * @return the user with the specified user id
      */
     @Query("SELECT username from users where userID=:userId")
-    String getUserById(Integer userId);
+    User getUserById(Integer userId);
 }
