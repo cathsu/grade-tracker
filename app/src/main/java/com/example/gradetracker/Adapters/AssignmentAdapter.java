@@ -7,9 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.gradetracker.AssignmentActivity;
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.EditAssignmentActivity;
@@ -18,6 +15,9 @@ import com.example.gradetracker.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
     private ArrayList<Assignment> mAssignmentList;
@@ -37,7 +37,6 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         public TextView mName;
         public Button mEdit;
         public Button mDelete;
-        public Button mAdd;
 
         public AssignmentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -91,8 +90,6 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
                 view.getContext().startActivity(intent);
             }
         });
-
-
     }
 
     @Override
