@@ -71,8 +71,9 @@ public class AssignmentDaoTest {
         dbAssignment.setName("Software Engineering Exam");
         dbAssignment.setEarnedPoints(88);
         db.AssignmentDao().updateAssignment(dbAssignment);
-        assertEquals(dbAssignment.getName(), "Software Engineering Exam");
-        assertEquals(dbAssignment.getEarnedPoints(), new Integer(88));
+        Assignment updatedDbAssignment = db.AssignmentDao().getAssignmentWithId(1);
+        assertEquals(updatedDbAssignment.getName(), "Software Engineering Exam");
+        assertEquals(updatedDbAssignment.getEarnedPoints(), new Integer(88));
     }
 
     @Test

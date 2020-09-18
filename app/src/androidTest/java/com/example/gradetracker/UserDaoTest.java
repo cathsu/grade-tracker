@@ -63,12 +63,13 @@ public class UserDaoTest {
         userInDatabase.setFirstName("Carol");
         userInDatabase.setLastName("Danvers");
         db.userDao().updateUser(userInDatabase);
+        User updatedUserInDatabase = db.userDao().getUserById(1);
 
         // ensure the updates have persisted
-        assertEquals(userInDatabase.getUserName(), "captain_marvel");
-        assertEquals(userInDatabase.getPassword(), "marvelous123");
-        assertEquals(userInDatabase.getFirstName(), "Carol");
-        assertEquals(userInDatabase.getLastName(), "Danvers");
+        assertEquals(updatedUserInDatabase.getUserName(), "captain_marvel");
+        assertEquals(updatedUserInDatabase.getPassword(), "marvelous123");
+        assertEquals(updatedUserInDatabase.getFirstName(), "Carol");
+        assertEquals(updatedUserInDatabase.getLastName(), "Danvers");
     }
 
     @Test
