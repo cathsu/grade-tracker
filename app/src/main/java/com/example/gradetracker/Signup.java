@@ -43,11 +43,20 @@ public class Signup extends AppCompatActivity {
 
     }
 
+    /**
+     * This method launches the Signup Activity.
+     * @param context
+     * @return an intent
+     */
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, Signup.class);
         return intent;
     }
 
+    /**
+     * This method is the
+     * @param view
+     */
     public void signup(View view) {
         validateCredentials();
     }

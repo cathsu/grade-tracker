@@ -23,6 +23,10 @@ public class EditAssignmentActivity extends AppCompatActivity {
     private Assignment assignment;
 
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,12 @@ public class EditAssignmentActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * This method launches the EditAssignmentActivity. It passes in the id of the assignment as an extra.
+     * @param context
+     * @param assignment_id
+     * @return an intent
+     */
     public static Intent getIntent(Context context, Integer assignment_id) {
         Intent intent = new Intent(context, EditAssignmentActivity.class);
         intent.putExtra(ASSIGNMENT_ID, assignment_id);
@@ -51,6 +61,11 @@ public class EditAssignmentActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * This method is the onClick handler for the Edit button. If the user's edits are valid, this method will update the assignment with its new attributes
+     * and redirect to the Assignment page.
+     * @param view
+     */
     public void edit(View view) {
         String name = activityEditAssignmentBinding.editTextAssignmentName.getText().toString();
         String description = activityEditAssignmentBinding.editTextDescription.getText().toString();
@@ -75,6 +90,10 @@ public class EditAssignmentActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method checks the button that matches the category the assignment is currently under
+     * @param category
+     */
     private void checkCategoryButton(String category) {
         if (activityEditAssignmentBinding.testButton.getText().toString().equals(category)) {
             activityEditAssignmentBinding.testButton.setChecked(true);
@@ -90,6 +109,16 @@ public class EditAssignmentActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method checks to make sure that data has been entered into all of the assignment fields. It will display an error message for the fields that are empty.
+     * @param name
+     * @param description
+     * @param earnedPoints
+     * @param maxPoints
+     * @param assignedDate
+     * @param dueDate
+     * @return true if none of the fields are empty, false otherwise
+     */
     private boolean isEditValid(String name, String description, String earnedPoints, String maxPoints, String assignedDate, String dueDate) {
         if (name.isEmpty() || description.isEmpty() || earnedPoints.isEmpty() || maxPoints.isEmpty() || assignedDate.isEmpty() || dueDate.isEmpty()) {
             if (name.isEmpty()) {
