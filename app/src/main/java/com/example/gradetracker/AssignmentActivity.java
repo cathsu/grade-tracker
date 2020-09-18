@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.gradetracker.Adapters.AssignmentAdapter;
@@ -18,7 +17,6 @@ import com.example.gradetracker.databinding.ActivityAssignmentBinding;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-// Citation: https://www.java67.com/2014/06/how-to-format-float-or-double-number-java-example.html
 public class AssignmentActivity extends AppCompatActivity {
     private AppDatabase db;
     private static String COURSE_ID = "course_id";
@@ -61,8 +59,6 @@ public class AssignmentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     public static Intent getIntent(Context context, int course_id) {
@@ -78,11 +74,6 @@ public class AssignmentActivity extends AppCompatActivity {
         double homeworkGrade = getOverallHomeworkGrade();
 
         double overallGrade = (0.4 *testGrade) + (0.2 * quizGrade) + (0.3 *homeworkGrade) + (0.1*labGrade);
-        Log.d("Test Grade", Double.toString(testGrade));
-        Log.d("Quiz Grade", Double.toString(quizGrade));
-        Log.d("Lab Grade", Double.toString(labGrade));
-        Log.d("Homework Grade", Double.toString(homeworkGrade));
-        Log.d("Overall Grade", Double.toString(overallGrade));
         return overallGrade;
     }
 

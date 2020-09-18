@@ -24,7 +24,6 @@ public class AssignmentAddActivity  extends AppCompatActivity{
     private EditText mEarnedPoints;
     private EditText mMaxPoints;
     private EditText mDescription;
-    private EditText mCourseId;
 
     private RadioGroup mradioGroup;
     private AppDatabase db;

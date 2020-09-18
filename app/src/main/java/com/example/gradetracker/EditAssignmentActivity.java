@@ -13,7 +13,6 @@ import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.databinding.ActivityEditAssignmentBinding;
 
 
-//Citation: https://stackoverflow.com/questions/20138445/how-to-get-the-text-from-radio-button-in-a-radio-group-when-radio-button-checked
 public class EditAssignmentActivity extends AppCompatActivity {
 
     private ActivityEditAssignmentBinding activityEditAssignmentBinding;
