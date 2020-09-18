@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gradetracker.AssignmentActivity;
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.EditAssignmentActivity;
@@ -15,9 +18,6 @@ import com.example.gradetracker.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
     private ArrayList<Assignment> mAssignmentList;
@@ -82,11 +82,12 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
             @Override
             public void onClick(View view) {
                 AppDatabase db = AppDatabase.getInstance(view.getContext());
+                int course_id = mAssignmentList.get(position).getCourseID();
                 db.AssignmentDao().deleteAssignment(mAssignmentList.get(position));
                 mAssignmentList.remove(position);
                 notifyItemRemoved(position);
                 notifyItemChanged(position);
-                Intent intent = AssignmentActivity.getIntent(view.getContext(), mAssignmentList.get(position).getCourseID());
+                Intent intent = AssignmentActivity.getIntent(view.getContext(), course_id);
                 view.getContext().startActivity(intent);
             }
         });

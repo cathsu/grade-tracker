@@ -48,10 +48,10 @@ public class AssignmentActivity extends AppCompatActivity {
         activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade (30%): " + decimalFormat.format(getOverallHomeworkGrade())+ "%");
         activityAssignmentBinding.tvLabGrade.setText("Lab Grade (10%): " + decimalFormat.format(getOverallLabGrade())+ "%");
 
-        AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id));
+        ArrayList<Assignment> allAssignmentsWithCourseId = (ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id);
+        AssignmentAdapter adapter = new AssignmentAdapter(allAssignmentsWithCourseId);
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
-
         activityAssignmentBinding.assignmentAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
