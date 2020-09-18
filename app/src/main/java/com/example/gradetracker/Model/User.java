@@ -1,7 +1,5 @@
 package com.example.gradetracker.Model;
 
-import java.util.ArrayList;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -18,14 +16,12 @@ public class User {
     private String firstName;
     @ColumnInfo(name = "last_name")
     private String lastName;
-    private ArrayList<Course> courses = new ArrayList<>();
 
-    public User(String userName, String password, String firstName, String lastName, ArrayList<Course> courses) {
+    public User(String userName, String password, String firstName, String lastName) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.courses = courses;
     }
 
     public void setUserID(Integer userID) {
@@ -52,10 +48,6 @@ public class User {
         return lastName;
     }
 
-    public ArrayList<Course> getCourses() {
-        return courses;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -64,7 +56,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", courses=" + courses +
                 '}';
     }
 }
