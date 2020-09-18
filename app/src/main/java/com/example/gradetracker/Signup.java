@@ -26,6 +26,10 @@ public class Signup extends AppCompatActivity {
     private Button mSignupButton;
     private AppDatabase db;
 
+    /**
+     * This method initializes Signup.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +55,21 @@ public class Signup extends AppCompatActivity {
     }
 
     /**
-     * This method is the
+     * This method is the onClick handler for the signup button. It calls a private function that
+     * will validate the user's credentials.
      * @param view
      */
     public void signup(View view) {
         validateCredentials();
     }
 
+    /**
+     * This method validates the data the user entered. It calls several helper functions to ensure
+     * that the user has entered valid information. If the user's credentials
+     * are valid, the user will be added to the database and will be directed back to the main page.
+     * If the user's credentials are invalid, error message(s) will display
+     * to indicate the error.
+     */
     private void validateCredentials() {
         String firstName = mFirstName.getText().toString();
         String lastName = mLastName.getText().toString();
@@ -98,12 +110,22 @@ public class Signup extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * This method checks if the username is already in the database.
+     * @param username
+     * @return true if username is not in the database, false if it is
+     */
     private Boolean isUsernameUnique(String username) {
         User existingUser = db.userDao().getUserWithUsername(username);
         return existingUser == null? true : false;
     }
 
+    /**
+     * This method checks if the password is at least 8 characters long and contains 3 letters
+     * and 2 numbers.
+     * @param password
+     * @return true if the password meets requirements, false if it does not
+     */
     private Boolean doesPasswordMeetRequirements(String password) {
         int numLetters = 0, numDigits = 0;
         if (password.length() < 8) {

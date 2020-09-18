@@ -23,7 +23,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
 
 
     /**
-     *
+     * This method initializes EditAssignmentActivity.
      * @param savedInstanceState
      */
     @Override
@@ -90,7 +90,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
     }
 
     /**
-     * This method checks the button that matches the category the assignment is currently under
+     * This method checks the button that matches the category the assignment is currently under.
      * @param category
      */
     private void checkCategoryButton(String category) {
@@ -109,7 +109,8 @@ public class EditAssignmentActivity extends AppCompatActivity {
     }
 
     /**
-     * This method checks to make sure that data has been entered into all of the assignment fields. It will display an error message for the fields that are empty.
+     * This method checks to make sure that data has been entered into all of the assignment fields.
+     * It will display an error message for the fields that are empty.
      * @param name
      * @param description
      * @param earnedPoints
