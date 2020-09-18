@@ -50,6 +50,12 @@ public class AssignmentActivity extends AppCompatActivity {
         activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade (30%): " + Double.toString(getOverallHomeworkGrade()));
         activityAssignmentBinding.tvLabGrade.setText("Lab Grade (10%): " + Double.toString(getOverallLabGrade()));
 
+        ArrayList<Assignment> allAssignments = (ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id);
+        for (Assignment assignment: allAssignments) {
+            Log.d("All assignments", assignment.toString());
+            Log.d("All assignments", assignment.getName());
+
+        }
         AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id));
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));

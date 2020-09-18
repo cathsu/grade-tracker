@@ -141,6 +141,21 @@ public class Assignment {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "assignmentID=" + assignmentID +
+                ", name='" + name + '\'' +
+                ", assignmentDescription='" + assignmentDescription + '\'' +
+                ", maxPoints=" + maxPoints +
+                ", earnedPoints=" + earnedPoints +
+                ", assignedDate='" + assignedDate + '\'' +
+                ", dueDate='" + dueDate + '\'' +
+                ", categoryName='" + categoryName + '\'' +
+                ", courseID=" + courseID +
+                '}';
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LocalDate getAssignedDateAsLocalDate() {
         return LocalDate.parse(assignedDate);

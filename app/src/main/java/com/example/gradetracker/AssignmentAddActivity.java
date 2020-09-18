@@ -3,6 +3,7 @@ package com.example.gradetracker;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,12 +47,12 @@ public class AssignmentAddActivity  extends AppCompatActivity{
         Intent intent = getIntent();
         course_id = intent.getIntExtra(COURSE_ID, -1);
 
-        mAssignedName = findViewById(R.id.etAssignedDate);
+        mAssignedName = findViewById(R.id.etAssignedName);
         mAssignedDate = findViewById(R.id.etAssignedDate);
-        mDueDate = findViewById(R.id.etAssignedDate);
-        mEarnedPoints = findViewById(R.id.etAssignedDate);
-        mMaxPoints = findViewById(R.id.etAssignedDate);
-        mDescription = findViewById(R.id.etAssignedDate);
+        mDueDate = findViewById(R.id.etDueDate);
+        mEarnedPoints = findViewById(R.id.etEarnedPoints);
+        mMaxPoints = findViewById(R.id.etMaxPoints);
+        mDescription = findViewById(R.id.etDescription);
         mradioGroup= findViewById(R.id.radioGroup);
 
 
@@ -80,10 +81,13 @@ public class AssignmentAddActivity  extends AppCompatActivity{
 
 
         Assignment a = new Assignment(assignedName, description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, course_id);
-
+        Log.d("Assignment", a.toString());
         db.AssignmentDao().insertAssignment(a);
         Toast toast = Toast.makeText(getApplicationContext(), "Assignment has been Added",Toast.LENGTH_LONG);
         toast.show();
+
+        Intent intent = AssignmentActivity.getIntent(getApplicationContext(), course_id);
+        startActivity(intent);
     }
 
     public static Intent getIntent(Context context, int course_id) {
