@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 public class AssignmentDaoTest {
     private AppDatabase db;
@@ -90,7 +90,7 @@ public class AssignmentDaoTest {
 
         // delete assignment and check if assignment has been deleted
         db.AssignmentDao().deleteAssignment(dbAssignment);
-        assertTrue(db.AssignmentDao().getAssignmentWithId(1) ==  null);
+        assertNull(db.AssignmentDao().getAssignmentWithId(1));
     }
 
     @Test
