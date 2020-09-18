@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class CoursesActivity extends AppCompatActivity {
+    private static String COURSE_ID = "course_id";
     private ActivityCoursesBinding activityCoursesBinding;
     private AppDatabase db;
     private User user;
@@ -61,7 +62,9 @@ public class CoursesActivity extends AppCompatActivity {
 
                 @Override
                 public void onViewClick(int p) {
-                    Toast.makeText(CoursesActivity.this, "hello", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), AssignmentActivity.class);
+                    intent.putExtra(COURSE_ID, courses.get(p).getCourseID());
+                    startActivity(intent);
                 }
             });
         }
