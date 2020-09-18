@@ -83,6 +83,9 @@ public class AssignmentActivity extends AppCompatActivity {
         for (Assignment assignment: testAssignments) {
             totalTestGrades += assignment.getPercentageGrade();
         }
+        if (totalTestGrades == 0.0) {
+            return 0.0;
+        }
         return totalTestGrades/testAssignments.size();
     }
 
@@ -92,6 +95,9 @@ public class AssignmentActivity extends AppCompatActivity {
 
         for (Assignment assignment: quizAssignments) {
             totalQuizGrades += assignment.getPercentageGrade();
+        }
+        if (totalQuizGrades == 0.0) {
+            return 0.0;
         }
         return totalQuizGrades/quizAssignments.size();
 
@@ -104,8 +110,10 @@ public class AssignmentActivity extends AppCompatActivity {
         for (Assignment assignment: labAssignments) {
             totalLabGrades += assignment.getPercentageGrade();
         }
+        if (totalLabGrades == 0.0) {
+            return 0.0;
+        }
         return totalLabGrades/labAssignments.size();
-
     }
 
     public double getOverallHomeworkGrade() {
@@ -114,7 +122,9 @@ public class AssignmentActivity extends AppCompatActivity {
         for (Assignment assignment: homeworkAssignments) {
             totalHomeworkGrades += assignment.getPercentageGrade();
         }
+        if (totalHomeworkGrades == 0.0) {
+            return 0.0;
+        }
         return totalHomeworkGrades/homeworkAssignments.size();
-
     }
 }
