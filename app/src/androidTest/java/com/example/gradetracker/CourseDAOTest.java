@@ -38,12 +38,6 @@ public class CourseDAOTest {
     }
 
     @Test
-    public void checkCourseName() {
-        String courseName = courseDao.getCourseCourseName("Intro to Jellyfishing").get(0).getCourseName();
-        assertEquals(courseName, testCourse.getCourseName());
-    }
-
-    @Test
     public void insertCourse() {
         Course course = new Course(2, "Harry", "Intro to Dementor Hunting", "Class that teaches fundamentals of magic.", "1/1/2020", "12/1/2020", null);
         course.setCourseID(2);
@@ -69,18 +63,6 @@ public class CourseDAOTest {
     public void testGetCourseById() {
         Course tempCourse = new Course(1, "Spongebob Squarepants", "Intro to Jellyfishing", "Class that teaches fundamentals of jellyfishing.", "1/1/2020", "12/1/2020", null);
         Course course = courseDao.getCourseById(1);
-        assertEquals(course.getUserID(), tempCourse.getUserID());
-        assertEquals(course.getInstructor(), tempCourse.getInstructor());
-        assertEquals(course.getCourseName(), tempCourse.getCourseName());
-        assertEquals(course.getDescription(), tempCourse.getDescription());
-        assertEquals(course.getStartDate(), tempCourse.getStartDate());
-        assertEquals(course.getEndDate(), tempCourse.getEndDate());
-    }
-
-    @Test
-    public void testGetCourseByCourseName() {
-        Course tempCourse = new Course(1, "Spongebob Squarepants", "Intro to Jellyfishing", "Class that teaches fundamentals of jellyfishing.", "1/1/2020", "12/1/2020", null);
-        Course course =  courseDao.getCourseCourseName("Intro to Jellyfishing").get(0);
         assertEquals(course.getUserID(), tempCourse.getUserID());
         assertEquals(course.getInstructor(), tempCourse.getInstructor());
         assertEquals(course.getCourseName(), tempCourse.getCourseName());
