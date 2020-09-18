@@ -1,12 +1,12 @@
 package com.example.gradetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gradetracker.Adapters.AssignmentAdapter;
 import com.example.gradetracker.DB.AppDatabase;
@@ -42,11 +42,11 @@ public class AssignmentActivity extends AppCompatActivity {
         activityAssignmentBinding.tvDescription.setText(course.getDescription());
         activityAssignmentBinding.tvStartDate.setText(course.getStartDate());
         activityAssignmentBinding.tvEndDate.setText(course.getEndDate());
-        activityAssignmentBinding.tvCourseGrade.setText("Overall Grade: " + decimalFormat.format(getOverallGrade()));
-        activityAssignmentBinding.tvTestGrade.setText("Test Grade (40%): " + decimalFormat.format(getOverallTestGrade()));
-        activityAssignmentBinding.tvQuizGrade.setText("Quiz Grade (20%): " + decimalFormat.format(getOverallQuizGrade()));
-        activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade (30%): " + decimalFormat.format(getOverallHomeworkGrade()));
-        activityAssignmentBinding.tvLabGrade.setText("Lab Grade (10%): " + decimalFormat.format(getOverallLabGrade()));
+        activityAssignmentBinding.tvCourseGrade.setText("Overall Grade: " + decimalFormat.format(getOverallGrade()) + "%");
+        activityAssignmentBinding.tvTestGrade.setText("Test Grade (40%): " + decimalFormat.format(getOverallTestGrade()) + "%");
+        activityAssignmentBinding.tvQuizGrade.setText("Quiz Grade (20%): " + decimalFormat.format(getOverallQuizGrade()) + "%");
+        activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade (30%): " + decimalFormat.format(getOverallHomeworkGrade())+ "%");
+        activityAssignmentBinding.tvLabGrade.setText("Lab Grade (10%): " + decimalFormat.format(getOverallLabGrade())+ "%");
 
         AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id));
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);

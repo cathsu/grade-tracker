@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,7 +68,7 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
         holder.mDescription.setText(assignmentItem.getAssignmentDescription());
         holder.mAssignedDate.setText(assignmentItem.getAssignedDate());
         holder.mDueDate.setText(assignmentItem.getDueDate());
-        holder.mAssignmentGrade.setText(decimalFormat.format(assignmentItem.getPercentageGrade()));
+        holder.mAssignmentGrade.setText(decimalFormat.format(assignmentItem.getPercentageGrade()) + "%");
         holder.mEarnedMaxPoints.setText(assignmentItem.getEarnedPoints() + " / " + assignmentItem.getMaxPoints());
         holder.mCategory.setText(assignmentItem.getCategoryName());
         holder.mEdit.setOnClickListener(new View.OnClickListener() {
