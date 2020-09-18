@@ -130,39 +130,49 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDescription"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
+
     <RadioGroup
-        android:id ="@+id/radioGroup"
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="33dp"
         android:gravity="center"
-        tools:ignore="ExtraText,MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="517dp">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvChooseCategory"
+        tools:ignore="ExtraText,MissingConstraints">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescription">
+
         <RadioButton
             android:id="@+id/Test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Test" />
+
         <RadioButton
             android:id="@+id/Quiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quiz" />
+
         <RadioButton
             android:id="@+id/Homework"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Homework" />
+
         <RadioButton
             android:id="@+id/Lab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lab" />
     </RadioGroup>
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.gradetracker.Adapters.AssignmentAdapter;
 import com.example.gradetracker.DB.AppDatabase;
@@ -16,6 +15,7 @@ import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.databinding.ActivityAssignmentBinding;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AssignmentActivity extends AppCompatActivity {
@@ -23,8 +23,6 @@ public class AssignmentActivity extends AppCompatActivity {
     private static String COURSE_ID = "course_id";
     private ActivityAssignmentBinding activityAssignmentBinding;
     private int course_id;
-
-    private Button edit_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +33,22 @@ public class AssignmentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         course_id = intent.getIntExtra(COURSE_ID, -1);
-        Log.d("Course ID", Integer.toString(course_id));
         db = AppDatabase.getInstance(getApplicationContext());
         Course course = db.courseDao().getCourseById(course_id);
+
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
 
         activityAssignmentBinding.tvCourseName.setText(course.getCourseName());
         activityAssignmentBinding.tvInstructor.setText(course.getInstructor());
         activityAssignmentBinding.tvDescription.setText(course.getDescription());
         activityAssignmentBinding.tvStartDate.setText(course.getStartDate());
         activityAssignmentBinding.tvEndDate.setText(course.getEndDate());
-        activityAssignmentBinding.tvCourseGrade.setText("Overall Grade: " + Double.toString(getOverallGrade()));
-        activityAssignmentBinding.tvTestGrade.setText("Test Grade (40%): " + Double.toString(getOverallTestGrade()));
-        activityAssignmentBinding.tvQuizGrade.setText("Quiz Grade (20%): " + Double.toString(getOverallQuizGrade()));
-        activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade (30%): " + Double.toString(getOverallHomeworkGrade()));
-        activityAssignmentBinding.tvLabGrade.setText("Lab Grade (10%): " + Double.toString(getOverallLabGrade()));
+        activityAssignmentBinding.tvCourseGrade.setText("Overall Grade: " + decimalFormat.format(getOverallGrade()));
+        activityAssignmentBinding.tvTestGrade.setText("Test Grade (40%): " + decimalFormat.format(getOverallTestGrade()));
+        activityAssignmentBinding.tvQuizGrade.setText("Quiz Grade (20%): " + decimalFormat.format(getOverallQuizGrade()));
+        activityAssignmentBinding.tvHomeworkGrade.setText("Homework Grade (30%): " + decimalFormat.format(getOverallHomeworkGrade()));
+        activityAssignmentBinding.tvLabGrade.setText("Lab Grade (10%): " + decimalFormat.format(getOverallLabGrade()));
 
-        ArrayList<Assignment> allAssignments = (ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id);
-        for (Assignment assignment: allAssignments) {
-            Log.d("All assignments", assignment.toString());
-            Log.d("All assignments", assignment.getName());
-
-        }
         AssignmentAdapter adapter = new AssignmentAdapter((ArrayList<Assignment>) db.AssignmentDao().getAssignmentsWithCourseId(course_id));
         activityAssignmentBinding.rvAssignment.setAdapter(adapter);
         activityAssignmentBinding.rvAssignment.setLayoutManager(new LinearLayoutManager(this));
@@ -71,33 +64,10 @@ public class AssignmentActivity extends AppCompatActivity {
 
     }
 
-
     public static Intent getIntent(Context context, int course_id) {
         Intent intent = new Intent(context, AssignmentActivity.class);
         intent.putExtra(COURSE_ID, course_id);
         return intent;
-    }
-
-
-    public void createAssignments() {
-        db.AssignmentDao().deleteAllAssignment();
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 1", "Brief description", 100, 78, "02-15-2020", "02-17-2020", "Test", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 2", "Brief description", 100, 86, "02-15-2020", "02-17-2020", "Test", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 3", "Brief description", 100, 65, "02-15-2020", "02-17-2020", "Test", course_id));
-
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 4", "Brief description", 10, 8, "02-15-2020", "02-17-2020", "Quiz", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 5", "Brief description", 10, 3, "02-15-2020", "02-17-2020", "Quiz", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 6", "Brief description", 10, 5, "02-15-2020", "02-17-2020", "Quiz", course_id));
-
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 7", "Brief description", 20, 8, "02-15-2020", "02-17-2020", "Lab", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 8", "Brief description", 20, 16, "02-15-2020", "02-17-2020", "Lab", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 9", "Brief description", 20, 20, "02-15-2020", "02-17-2020", "Lab", course_id));
-
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 10", "Brief description", 30, 30, "02-15-2020", "02-17-2020", "Homework", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 11", "Brief description", 30, 15, "02-15-2020", "02-17-2020", "Homework", course_id));
-        db.AssignmentDao().insertAssignment(new Assignment("Assignment 12", "Brief description", 30, 26, "02-15-2020", "02-17-2020", "Homework", course_id));
-
-
     }
 
     public double getOverallGrade() {

@@ -3,7 +3,6 @@ package com.example.gradetracker;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.gradetracker.DB.AppDatabase;
-import com.example.gradetracker.DB.AssignmentDao;
 import com.example.gradetracker.Model.Assignment;
-
-import java.security.SecureRandom;
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -81,7 +76,6 @@ public class AssignmentAddActivity  extends AppCompatActivity{
 
 
         Assignment a = new Assignment(assignedName, description, maxPoints, earnedPoints, assignedDate, dueDate, categoryName, course_id);
-        Log.d("Assignment", a.toString());
         db.AssignmentDao().insertAssignment(a);
         Toast toast = Toast.makeText(getApplicationContext(), "Assignment has been Added",Toast.LENGTH_LONG);
         toast.show();

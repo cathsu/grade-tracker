@@ -16,6 +16,7 @@ import com.example.gradetracker.EditAssignmentActivity;
 import com.example.gradetracker.Model.Assignment;
 import com.example.gradetracker.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.AssignmentViewHolder> {
@@ -62,12 +63,13 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
 
     @Override
     public void onBindViewHolder(@NonNull AssignmentViewHolder holder, final int position) {
+        DecimalFormat decimalFormat = new DecimalFormat("##.##");
         Assignment assignmentItem = mAssignmentList.get(position);
         holder.mName.setText(assignmentItem.getName());
         holder.mDescription.setText(assignmentItem.getAssignmentDescription());
         holder.mAssignedDate.setText(assignmentItem.getAssignedDate());
         holder.mDueDate.setText(assignmentItem.getDueDate());
-        holder.mAssignmentGrade.setText(Double.toString(assignmentItem.getPercentageGrade()));
+        holder.mAssignmentGrade.setText(decimalFormat.format(assignmentItem.getPercentageGrade()));
         holder.mEarnedMaxPoints.setText(assignmentItem.getEarnedPoints() + " / " + assignmentItem.getMaxPoints());
         holder.mCategory.setText(assignmentItem.getCategoryName());
         holder.mEdit.setOnClickListener(new View.OnClickListener() {
