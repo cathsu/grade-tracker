@@ -12,7 +12,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Assignment.class, Course.class, User.class}, version = 11)
+@Database(entities = {Assignment.class, Course.class, User.class}, version = 12)
 @TypeConverters({ArrayListConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DBNAME ="grade_tracker_db";

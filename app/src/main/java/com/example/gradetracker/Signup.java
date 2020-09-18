@@ -1,7 +1,5 @@
 package com.example.gradetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gradetracker.DB.AppDatabase;
-import com.example.gradetracker.Model.Course;
 import com.example.gradetracker.Model.User;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Signup extends AppCompatActivity {
 
@@ -60,7 +57,7 @@ public class Signup extends AppCompatActivity {
 
 
         if (isUsernameValid && isPasswordValid && !firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
-            db.userDao().insertUser(new User(username, password, firstName, lastName, new ArrayList<Course>()));
+            db.userDao().insertUser(new User(username, password, firstName, lastName));
             Toast t = Toast.makeText(getApplicationContext(), "Signup successful", Toast.LENGTH_SHORT);
             t.setGravity(Gravity.BOTTOM, 0, 0);
             t.show();
