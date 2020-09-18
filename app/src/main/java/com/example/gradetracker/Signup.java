@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +49,7 @@ public class Signup extends AppCompatActivity {
         validateCredentials();
     }
 
-    public void validateCredentials() {
+    private void validateCredentials() {
         String firstName = mFirstName.getText().toString();
         String lastName = mLastName.getText().toString();
         String username = mUsername.getText().toString();
@@ -90,18 +87,15 @@ public class Signup extends AppCompatActivity {
                 mPassword.setError("Password must be 8 characters long. There must be at least 3 letters and 2 numbers.");
             }
         }
-//        Log.d("testing", db.userDao().getUserWithUsername(username).toString());
-
-
     }
 
 
-    public Boolean isUsernameUnique(String username) {
+    private Boolean isUsernameUnique(String username) {
         User existingUser = db.userDao().getUserWithUsername(username);
         return existingUser == null? true : false;
     }
 
-    public Boolean doesPasswordMeetRequirements(String password) {
+    private Boolean doesPasswordMeetRequirements(String password) {
         int numLetters = 0, numDigits = 0;
         if (password.length() < 8) {
             return false;

@@ -24,6 +24,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Citations:
+ * https://www.java67.com/2014/06/how-to-format-float-or-double-number-java-example.html
+ * https://stackoverflow.com/questions/20138445/how-to-get-the-text-from-radio-button-in-a-radio-group-when-radio-button-checked
+ */
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding activityMainBinding;
