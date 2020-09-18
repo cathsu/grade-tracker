@@ -60,6 +60,6 @@ public interface UserDao {
      * @param userId
      * @return the user with the specified user id
      */
-    @Query("SELECT username from users where userID=:userId")
+    @Query("SELECT * from users where userID=:userId")
     User getUserById(Integer userId);
 }
