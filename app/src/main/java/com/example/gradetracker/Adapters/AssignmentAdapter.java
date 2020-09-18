@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gradetracker.AssignmentActivity;
 import com.example.gradetracker.DB.AppDatabase;
 import com.example.gradetracker.EditAssignmentActivity;
 import com.example.gradetracker.Model.Assignment;
@@ -86,6 +87,8 @@ public class  AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.A
                 mAssignmentList.remove(position);
                 notifyItemRemoved(position);
                 notifyItemChanged(position);
+                Intent intent = AssignmentActivity.getIntent(view.getContext(), mAssignmentList.get(position).getCourseID());
+                view.getContext().startActivity(intent);
             }
         });
 
